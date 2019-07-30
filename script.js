@@ -13,8 +13,6 @@ const copyPass = () => {
         a.focus();
         a.select();
 
-        console.log(a.value);
-
         /*let c = */document.execCommand('copy');
         // console.log(c);
         outputField('Пароль скопирован');
