@@ -1,3 +1,6 @@
+import '../styles/style.sass';
+
+
 window.onload = () => {
   getValueCheckbox();
 }
@@ -110,3 +113,6 @@ function generatePassword(valueCheckboxes) {
 
   // console.log( newPass );
 }
+
+
+// @types/jest jest ts-jest ts-loader typescript
