@@ -1,118 +1,101 @@
 import '../styles/index.sass';
 
 
-window.onload = () => {
-  getValueCheckbox();
-}
+class PassGenerator {
+  constructor() {
+    this.lowChar = 'abcdefghijklmnopqrstuvwxyz';
+    this.upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    this.numbers = '0123456789';
+    this.symbols = '^!№;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
 
-//Buttons
-document.getElementById('refresh').onclick = getValueCheckbox;
+    this.checkboxesState = [];
+    this.lengthPassword = 4;
 
-// Copy password
-const copyPass = () => {
-  const a = document.getElementById('output');
 
-  if (a.value != 'Пароль скопирован' && !a.value == false) {
-    a.focus();
-    a.select();
+    this.passwordField = document.querySelector('.password__input');
+    this.refresh = document.querySelector('.js-password__image--refresh');
+    this.copy = document.querySelector('.js-password__image--copy');
 
-    document.execCommand('copy');
+    this.showPassLength = document.querySelector('.js-options__input-text');
+    this.range = document.querySelector('.js-options__input-range');
+
+    this.checkboxes = document.querySelectorAll('.js-options__checkbox');
+
+
+    this.setListeners();
+
+    this.getValueOfCheckboxes();
+    this.createPassword();
+  }
+
+  setListeners() {
+    document.addEventListener('change', event => {
+      this.getValueOfCheckboxes(event);
+      this.getValueOfRange();
+      this.createPassword();
+    });
+  }
+
+  getValueOfRange() {
+    this.lengthPassword = Number(this.range.value);
+    this.showPassLength.value = this.range.value;
+  }
+
+  getValueOfCheckboxes(event) {
+    this.checkboxesState = [];
     
-    outputField('Пароль скопирован');
-  }
+    this.checkboxes.forEach(elem => {
+      elem.checked ? this.checkboxesState.push(elem.value) : 0;
+    });
 
-  if (!a.value == true) {
-    a.placeholder = 'Обновите';
-  }
-}
-// Get copy button
-const copyBtn = document.getElementById('copy');
-copyBtn.onclick = copyPass;
-
-
-// Show Password 
-const outputField = (text) => {
-  document.getElementById('output').value = text;
-}
-// Length password and show number
-const rangeInput = document.getElementById('range-pass');
-rangeInput.oninput = getLengthPass;
-
-function getLengthPass() {
-  return document.getElementById('text-pass').value = rangeInput.value;
-}
-
-// Checkbox
-const checkbox = document.getElementsByName('check');
-
-for (let i = 0; i < checkbox.length; i++) {
-  checkbox[i].onchange = getValueCheckbox;
-}
-
-function getValueCheckbox() {
-  let valueBox = [];
-
-  for (let i = 0; i < checkbox.length; i++) {
-    if (checkbox[i].checked) {
-      valueBox.push(checkbox[i].value);
+    if (this.checkboxesState.length < 1) {
+      this.checkboxes.forEach(elem => {
+        if (elem == event.target) {
+          elem.checked = true;
+          this.checkboxesState.push(elem.value);
+        }
+      });
     }
   }
-  generatePassword(valueBox);
-}
 
-// Rand Functions
-const randChar = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+  getSymbolFromString(string) {
+    const index = Math.floor(Math.random() * string.length);
+    const char = string.split('').splice(index, 1);
 
-const randSymbol = () => {
-  //let count = 33;// all symbols
-
-  let num = Math.floor(Math.random() * 33);
-
-  if (num < 16) {// if num==0 => 32+0=32 && 32+15=47
-    num += 32;// 32-47
-  }
-  else if (num < 23) {// num != 0 && all 7 chars but num==16/22
-    num -= 15;
-    num += 57;// 58-64
-  }
-  else if (num < 29) {// num != 0 && all 6 chars but num==23/28
-    num -= 22;
-    num += 90;// 91-96
-  }
-  else if (num < 33) {// num != 0 && all 4 chars but num==29/32
-    num -= 28;
-    num += 122;// 123-126
+    return char;
   }
 
-  return num;
-}
+  randChar() {
+    const checkboxName = Math.floor(Math.random() * this.checkboxesState.length);
 
-// Generate Password
-function generatePassword(valueCheckboxes) {
-  let lengthPass = getLengthPass();
-  let passwordArray = [];
-
-  for (let i = 0; i < lengthPass; i++) {
-    let randNum = Math.floor(Math.random() * valueCheckboxes.length);
-
-    if (valueCheckboxes.length == 0) return; // all checkbox == null
-
-    if (valueCheckboxes[randNum] == 'low') {
-      passwordArray.push(String.fromCharCode(randChar(97, 123)));// a-z
-    } else if (valueCheckboxes[randNum] == 'up') {
-      passwordArray.push(String.fromCharCode(randChar(65, 91)));// A-Z
-    } else if (valueCheckboxes[randNum] == 'num') {
-      passwordArray.push(String.fromCharCode(randChar(48, 58)));// 0-9
-    } else if (valueCheckboxes[randNum] == 'symb') {
-      passwordArray.push(String.fromCharCode(randSymbol()));// {|}~space!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    switch (this.checkboxesState[checkboxName]) {
+      case 'low':
+        return this.getSymbolFromString(this.lowChar);
+      case 'up':
+        return this.getSymbolFromString(this.upperChar);
+      case 'num':
+        return this.getSymbolFromString(this.numbers);
+      case 'symb':
+        return this.getSymbolFromString(this.symbols);
+      default:
+        break;
     }
   }
-  const newPass = passwordArray.join('');
 
-  outputField(newPass);
+  createPassword() {
+    let password = '';
 
-  // console.log( newPass );
+    for (let i = 0; i < this.lengthPassword; i++) {
+      password += this.randChar();
+    }
+    this.passwordField.value = password;
+  }
 }
+
+const passClass = new PassGenerator();
+
+
+
 
 
 // @types/jest jest ts-jest ts-loader typescript

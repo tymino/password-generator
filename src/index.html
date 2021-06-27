@@ -23,8 +23,8 @@
       <input class="password__input" type='text'>
 
       <div class="password__image-container">
-        <img class='password__image password__image--refresh' alt='image refresh' src='<%= require('./images/icons/refresh.png').default %>'>
-        <img class='password__image password__image--copy' alt='image copy' src='<%= require('./images/icons/copy.png').default %>'>
+        <img class='password__image password__image--refresh js-password__image--refresh' alt='image refresh' src='<%= require('./images/icons/refresh.png').default %>'>
+        <img class='password__image password__image--copy js-password__image--copy' alt='image copy' src='<%= require('./images/icons/copy.png').default %>'>
       </div>
     </div>
 
@@ -32,26 +32,26 @@
       <div class='options__length-pass'>
         <p class="options__title">Длина пароля</p>
         <div class="options__container-inputs">
-          <input class="options__input-text" type='text' value='12' disabled>
-          <input class="options__input-range" type='range' min='4' max='32' value='12'>
+          <input class="options__input-text js-options__input-text" type='text' value='12' disabled>
+          <input class="options__input-range js-options__input-range" type='range' min='4' max='32' value='12'>
         </div>
       </div>
 
       <div class='options__checkboxes'>
         <label class='options__label'>Строчные буквы
-          <input class='options__checkbox' type='checkbox' value='low' checked>
+          <input class='options__checkbox js-options__checkbox' type='checkbox' value='low' checked>
         </label>
 
         <label class='options__label'>Прописные буквы
-          <input class='options__checkbox' type='checkbox' value='up' checked>
+          <input class='options__checkbox js-options__checkbox' type='checkbox' value='up' checked>
         </label>
 
         <label class='options__label'>Цифры
-          <input class='options__checkbox' type='checkbox' value='num' checked>
+          <input class='options__checkbox js-options__checkbox' type='checkbox' value='num' checked>
         </label>
 
         <label class='options__label'>Символы
-          <input class='options__checkbox' type='checkbox' value='symb'>
+          <input class='options__checkbox js-options__checkbox' type='checkbox' value='symb' checked>
         </label>
       </div>
     </div>
