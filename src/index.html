@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <meta name='description' content='Password generator (min 4, max 32 symbols)'>
+  <meta name='author' content='https://github.com/tymino'>
+  <meta name='keywords' content='html, sass, javascript, typescript, webpack, password generator'>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap' rel='stylesheet'>
+  <link rel='shortcut icon' type='image/x-icon' href='<%= require('./images/favicon.ico').default %>'>
+
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <header>
+    <h1>Создайте свой пароль</h1>
+  </header>
+
+  <main>
+    <div class='field-wrap'>
+      <input id='output' type='text'>
+
+      <img class='icon-btn' id='refresh' alt='image refresh' src='<%= require('./images/icons/refresh.png').default %>'>
+      <img class='icon-btn' id='copy' alt='image copy' src='<%= require('./images/icons/copy.png').default %>'>
+    </div>
+
+    <div class='options-wrap'>
+      <!-- Left column -->
+      <div class='options-wrap__length'>
+        <p>Длина пароля</p>
+        <input type='text' id='text-pass' value='12' disabled>
+        <input type='range' id='range-pass' min='4' max='32' value='12'>
+      </div>
+
+      <!-- Right column -->
+      <div class='options-wrap__symbols'>
+        <div class='checkbox__wrap'>
+          <input class='checkbox__input' id='checkbox-lowercase' type='checkbox' name='check' value='low' checked>
+          <label class='checkbox__label' for='checkbox-lowercase'>Строчные буквы</label>
+        </div>
+
+        <div class='checkbox__wrap'>
+          <input class='checkbox__input' id='checkbox-uppercase' type='checkbox' name='check' value='up' checked>
+          <label class='checkbox__label' for='checkbox-uppercase'>Прописные буквы</label>
+        </div>
+
+        <div class='checkbox__wrap'>
+          <input class='checkbox__input' id='checkbox-numbers' type='checkbox' name='check' value='num' checked>
+          <label class='checkbox__label' for='checkbox-numbers'>Цифры</label>
+        </div>
+
+        <div class='checkbox__wrap'>
+          <input class='checkbox__input' id='checkbox-symbols' type='checkbox' name='check' value='symb'>
+          <label class='checkbox__label' for='checkbox-symbols'>Символы</label>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
