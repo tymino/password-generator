@@ -1,4 +1,4 @@
-import '../styles/style.sass';
+import '../styles/index.sass';
 
 
 window.onload = () => {
