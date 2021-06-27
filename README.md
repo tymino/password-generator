@@ -1,2 +1,2 @@
 #### Password generator: ####  
-Site: http://pass-generator-max32symb.surge.sh/
+https://pass-generator-max32symb.surge.sh/
