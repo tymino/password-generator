@@ -60,7 +60,7 @@ class PassGenerator {
 
   getSymbolFromString(string) {
     const index = Math.floor(Math.random() * string.length);
-    const char = string.split('').splice(index, 1);
+    const char = string.split('').slice(index, index + 1);
 
     return char;
   }
