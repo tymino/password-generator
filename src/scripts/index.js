@@ -103,9 +103,3 @@ class PassGenerator {
 }
 
 const passClass = new PassGenerator();
-
-
-
-
-
-// @types/jest jest ts-jest ts-loader typescript
