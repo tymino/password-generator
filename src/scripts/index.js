@@ -18,6 +18,7 @@ class PassGenerator {
 
     this.showPassLength = document.querySelector('.js-options__input-text');
     this.range = document.querySelector('.js-options__input-range');
+    this.optionsContainer = document.querySelector('.js-options');
 
     this.checkboxes = document.querySelectorAll('.js-options__checkbox');
 
@@ -29,16 +30,15 @@ class PassGenerator {
   }
 
   setListeners() {
-    document.addEventListener('change', event => {
-      this.getValueOfCheckboxes(event);
-      this.getValueOfRange();
-      this.createPassword();
-    });
+    this.optionsContainer.addEventListener('change', event => this.getValueOfCheckboxes(event));
+    this.refresh.addEventListener('click', event => this.getValueOfCheckboxes(event));
+    this.copy.addEventListener('click', event => this.getCopyOfPassword(event));
   }
 
-  getValueOfRange() {
-    this.lengthPassword = Number(this.range.value);
-    this.showPassLength.value = this.range.value;
+  getCopyOfPassword() {
+    this.passwordField.select();
+    document.execCommand('copy');
+    // console.log('test');
   }
 
   getValueOfCheckboxes(event) {
@@ -49,14 +49,24 @@ class PassGenerator {
     });
 
     if (this.checkboxesState.length < 1) {
-      this.checkboxes.forEach(elem => {
-        if (elem == event.target) {
-          elem.checked = true;
-          this.checkboxesState.push(elem.value);
+      this.checkboxes.forEach(checkbox => {
+        if (checkbox == event.target) {
+          checkbox.checked = true;
+          this.checkboxesState.push(checkbox.value);
         }
       });
+    } else {
+      this.getValueOfRange();
     }
   }
+
+  getValueOfRange() {
+    this.lengthPassword = Number(this.range.value);
+    this.showPassLength.value = this.range.value;
+
+    this.createPassword();
+  }
+
 
   getSymbolFromString(string) {
     const index = Math.floor(Math.random() * string.length);
