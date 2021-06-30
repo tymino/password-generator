@@ -28,7 +28,7 @@ body
   &__title
     display: flex
     justify-content: center
-    margin: 50px 0
+    margin: 30px 0
 
 .main
   display: flex
@@ -51,6 +51,7 @@ body
     border-bottom: 1px solid $blackColor
     font-family: $font
     font-size: 1.3em
+    text-align: center
     outline: none
 
   &__image-container
@@ -67,12 +68,10 @@ body
     &:hover
       transform: scale(1.1)
 
-    &--refresh
     &--copy
       margin-left: 6px
 
 .options
-  &__length-pass
   &__title
     font-size: 1.6em
     font-family: $font
@@ -120,7 +119,7 @@ body
       width: 25px
       height: 25px
       border-radius: 5px
-      background: #4CAF50
+      background: $grayColor
       cursor: pointer
 
   &__checkboxes
@@ -128,23 +127,6 @@ body
     flex-direction: column
     align-items: flex-start
     margin-left: 30px
-
-  // &__label
-  //   display: flex
-  //   flex-direction: row-reverse
-  //   align-items: center
-
-  //   font-size: 1.4em
-  //   font-family: $font
-  //   cursor: pointer
-
-  // &__checkbox
-  //   margin-right: 6px
-  //   cursor: pointer
-  //   transform: scale(1.5)
-
-  // &__checkmark
-
 
   &__label
     display: block
@@ -154,12 +136,10 @@ body
     cursor: pointer
     font-size: 1.4em
 
-
   &__checkbox
     position: absolute
     opacity: 0
     cursor: pointer
-
 
   &__checkmark
     position: absolute
@@ -169,24 +149,19 @@ body
     width: 25px
     background-color: #eee
 
-
   &__label:hover .options__checkbox ~ .options__checkmark
     background-color: #ccc
 
-
   &__label .options__checkbox:checked ~ .options__checkmark
     background-color: $grayColor
-
 
   &__checkmark:after
     content: ""
     position: absolute
     display: none
 
-
   &__label .options__checkbox:checked ~ .options__checkmark:after
     display: block
-
 
   &__label .options__checkmark:after
     left: 9px
@@ -201,26 +176,30 @@ body
 
 
 
+@media screen and (max-width: 490px)
+  .header__title
+    width: 300px
+    text-align: center
+    margin: 16px 0
 
+  .main__container
+    display: flex
+    flex-direction: column
+    min-width: 230px
 
-// @media screen and (max-width: 820px) 
-//   .field-wrap, .options-wrap 
-//     max-width: 90%
-  
+  .password__input
+    font-size: 0.9em
 
-// @media screen and (max-width: 568px) 
-//   .options-wrap 
-//     flex-direction: column
-//     align-items: center
-  
-//   #range-pass 
-//     width: 100px
-  
+  .password__image-container
+    margin-top: 16px
 
-//   .options-wrap__complexity 
-//     margin-top: 15px
-  
-//   .options-wrap__symbols 
-//     margin-left: 28px
-//     margin-top: 15px
-  
+  .password__image
+    width: 42px
+    height: 42px
+
+  .options__title
+    text-align: center
+
+  .options__checkboxes
+    margin-top: 20px
+    margin-left: 10px
