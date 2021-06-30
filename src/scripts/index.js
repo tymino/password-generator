@@ -8,6 +8,8 @@ class PassGenerator {
     this.numbers = '0123456789';
     this.symbols = '^!№;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
 
+    this.classNameForCopied = 'copied';
+
     this.checkboxesState = [];
     this.lengthPassword = 4;
 
@@ -32,17 +34,26 @@ class PassGenerator {
   setListeners() {
     this.optionsContainer.addEventListener('change', event => this.getValueOfCheckboxes(event));
     this.refresh.addEventListener('click', event => this.getValueOfCheckboxes(event));
-    this.copy.addEventListener('click', event => this.getCopyOfPassword(event));
+    this.copy.addEventListener('click', () => this.getCopyOfPassword());
   }
 
   getCopyOfPassword() {
-    this.passwordField.select();
-    document.execCommand('copy');
-    // console.log('test');
+    if (!this.copy.classList.contains(this.classNameForCopied)) {
+      this.passwordField.disabled = false;
+      this.passwordField.select();
+      document.execCommand('copy');
+
+      this.passwordField.value = 'Пароль скопирован';
+      this.passwordField.disabled = true;
+
+      this.copy.classList.add(this.classNameForCopied);
+    }
   }
 
   getValueOfCheckboxes(event) {
+    this.copy.classList.remove(this.classNameForCopied);
     this.checkboxesState = [];
+
     
     this.checkboxes.forEach(elem => {
       elem.checked ? this.checkboxesState.push(elem.value) : 0;
@@ -66,7 +77,6 @@ class PassGenerator {
 
     this.createPassword();
   }
-
 
   getSymbolFromString(string) {
     const index = Math.floor(Math.random() * string.length);
@@ -102,4 +112,5 @@ class PassGenerator {
   }
 }
 
-const passClass = new PassGenerator();
+
+window.addEventListener('load', () => new PassGenerator());
