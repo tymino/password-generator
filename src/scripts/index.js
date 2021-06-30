@@ -54,7 +54,6 @@ class PassGenerator {
     this.copy.classList.remove(this.classNameForCopied);
     this.checkboxesState = [];
 
-    
     this.checkboxes.forEach(elem => {
       elem.checked ? this.checkboxesState.push(elem.value) : 0;
     });
