@@ -2,6 +2,21 @@ import '../styles/index.sass';
 
 
 class PassGenerator {
+  lowChar: string;
+  upperChar: string;
+  numbers: string;
+  symbols: string;
+  classNameForCopied: string;
+  checkboxesState: any;
+  lengthPassword: number;
+  passwordField: HTMLInputElement;
+  refresh: HTMLElement;
+  copy: HTMLElement;
+  showPassLength: HTMLInputElement;
+  range: HTMLInputElement;
+  optionsContainer: HTMLElement;
+  checkboxes: NodeListOf<HTMLInputElement>;
+  
   constructor() {
     this.lowChar = 'abcdefghijklmnopqrstuvwxyz';
     this.upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -14,13 +29,13 @@ class PassGenerator {
     this.lengthPassword = 4;
 
 
-    this.passwordField = document.querySelector('.password__input');
-    this.refresh = document.querySelector('.js-password__image--refresh');
-    this.copy = document.querySelector('.js-password__image--copy');
+    this.passwordField = document.querySelector('.password__input') as HTMLInputElement;
+    this.refresh = document.querySelector('.js-password__image--refresh') as HTMLElement;
+    this.copy = document.querySelector('.js-password__image--copy') as HTMLElement;
 
-    this.showPassLength = document.querySelector('.js-options__input-text');
-    this.range = document.querySelector('.js-options__input-range');
-    this.optionsContainer = document.querySelector('.js-options');
+    this.showPassLength = document.querySelector('.js-options__input-text') as HTMLInputElement;
+    this.range = document.querySelector('.js-options__input-range') as HTMLInputElement;
+    this.optionsContainer = document.querySelector('.js-options') as HTMLElement;
 
     this.checkboxes = document.querySelectorAll('.js-options__checkbox');
 
@@ -32,9 +47,17 @@ class PassGenerator {
   }
 
   setListeners() {
-    this.optionsContainer.addEventListener('change', event => this.getValueOfCheckboxes(event));
-    this.refresh.addEventListener('click', event => this.getValueOfCheckboxes(event));
-    this.copy.addEventListener('click', () => this.getCopyOfPassword());
+    this.optionsContainer.addEventListener('change', (event: Event) => {
+      this.getValueOfCheckboxes(event);
+    });
+
+    this.refresh.addEventListener('click', (event: MouseEvent) => {
+      this.getValueOfCheckboxes(event)
+    });
+    
+    this.copy.addEventListener('click', () => {
+      this.getCopyOfPassword()
+    });
   }
 
   getCopyOfPassword() {
@@ -50,7 +73,7 @@ class PassGenerator {
     }
   }
 
-  getValueOfCheckboxes(event) {
+  getValueOfCheckboxes(event?: Event) {
     this.copy.classList.remove(this.classNameForCopied);
     this.checkboxesState = [];
 
@@ -60,7 +83,7 @@ class PassGenerator {
 
     if (this.checkboxesState.length < 1) {
       this.checkboxes.forEach(checkbox => {
-        if (checkbox == event.target) {
+        if (checkbox == event!.target) {
           checkbox.checked = true;
           this.checkboxesState.push(checkbox.value);
         }
@@ -77,14 +100,14 @@ class PassGenerator {
     this.createPassword();
   }
 
-  getSymbolFromString(string) {
-    const index = Math.floor(Math.random() * string.length);
-    const char = string.split('').slice(index, index + 1);
+  getSymbolFromString(str: string): string[] {
+    const index = Math.floor(Math.random() * str.length);
+    const char = str.split('').slice(index, index + 1);
 
     return char;
   }
 
-  randChar() {
+  randChar(): string[] {
     const checkboxName = Math.floor(Math.random() * this.checkboxesState.length);
 
     switch (this.checkboxesState[checkboxName]) {
@@ -97,7 +120,7 @@ class PassGenerator {
       case 'symb':
         return this.getSymbolFromString(this.symbols);
       default:
-        break;
+        return [];
     }
   }
 

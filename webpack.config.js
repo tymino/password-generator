@@ -16,7 +16,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   entry: {
-    app: path.resolve(__dirname, './src/scripts/index.js'),
+    app: path.resolve(__dirname, './src/scripts/index.ts'),
   },
   output: {
     filename: '[name].[fullhash].js',
