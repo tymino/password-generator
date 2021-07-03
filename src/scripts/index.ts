@@ -21,7 +21,7 @@ class PassGenerator {
     this.lowChar = 'abcdefghijklmnopqrstuvwxyz';
     this.upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     this.numbers = '0123456789';
-    this.symbols = '^!№;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
+    this.symbols = '^! ;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
 
     this.classNameForCopied = 'copied';
 
