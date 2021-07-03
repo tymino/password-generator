@@ -1,13 +1,12 @@
 {
   "name": "password-generator",
   "version": "2.2.7",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "https://github.com/tymino/Password-Generator.git",
   "author": "tymino",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest",
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production"
   },
