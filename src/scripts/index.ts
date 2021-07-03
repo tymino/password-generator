@@ -70,6 +70,8 @@ class PassGenerator {
       this.passwordField.disabled = true;
 
       this.copy.classList.add(this.classNameForCopied);
+
+      this.passwordField.blur();
     }
   }
 
