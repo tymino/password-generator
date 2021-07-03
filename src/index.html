@@ -15,7 +15,7 @@
 </head>
 <body>
   <header class="header">
-    <h1 class="header__title">Создайте свой пароль</h1>
+    <h1 class="js-header__title header__title">Создайте свой пароль</h1>
   </header>
 
   <main class="main">
@@ -30,7 +30,7 @@
 
     <div class='js-options options main__container'>
       <div class='options__length-pass'>
-        <p class="options__title">Длина пароля</p>
+        <p class="js-options__title options__title">Длина пароля</p>
         <div class="options__container-inputs">
           <input class="options__input-text js-options__input-text" type='text' value='12' disabled>
           <input class="options__input-range js-options__input-range" type='range' min='4' max='32' value='12'>
@@ -38,26 +38,39 @@
       </div>
 
       <div class='options__checkboxes'>
-        <label class='options__label'>Строчные буквы
+        <label class='options__label' >
+          <p class='js-options__name options__name'>Нижний регистр</p>
           <input class='options__checkbox js-options__checkbox' type='checkbox' value='low' checked>
           <span class="options__checkmark"></span>
         </label>
 
-        <label class='options__label'>Прописные буквы
+        <label class='options__label'>
+          <p class='js-options__name options__name'>Верхний регистр</p>
           <input class='options__checkbox js-options__checkbox' type='checkbox' value='up' checked>
           <span class="options__checkmark"></span>
         </label>
 
-        <label class='options__label'>Цифры
+        <label class='options__label'>
+          <p class='js-options__name options__name'>Цифры</p>
           <input class='options__checkbox js-options__checkbox' type='checkbox' value='num' checked>
           <span class="options__checkmark"></span>
         </label>
 
-        <label class='options__label'>Символы
+        <label class='options__label'>
+          <p class='js-options__name options__name'>Символы</p>
           <input class='options__checkbox js-options__checkbox' type='checkbox' value='symb'>
           <span class="options__checkmark"></span>
         </label>
       </div>
+    </div>
+
+    <div class="switcher">
+      <p class="switcher__p">RU</p>
+      <label class="switcher__label switch">
+        <input class='js-switcher__checkbox switcher__checkbox' type="checkbox">
+        <span class="switcher__slider"></span>
+      </label>
+      <p class="switcher__p">EN</p>
     </div>
   </main>
 </body>

@@ -1,6 +1,4 @@
-$blackColor: #000
-$grayColor: #666666
-$font: 'Roboto Mono', monospace
+@import variables
 
 
 *
@@ -36,23 +34,26 @@ body
 
   &__container
     display: flex
-    justify-content: space-between
+    justify-content: flex-start
 
-    border: 1px solid $blackColor
+    border: 1px solid $colorBlack
     padding: 18px 26px
     border-radius: 5px
 
+    width: 430px
     margin-bottom: 20px
 
 .password
   &__input
     width: 100%
     border: none
-    border-bottom: 1px solid $blackColor
+    border-bottom: 1px solid $colorBlack
     font-family: $font
     font-size: 1.3em
+    color: $colorBlack
     text-align: center
     outline: none
+    background-color: $colorWhite
 
     &::selection
       background: none
@@ -68,8 +69,8 @@ body
     height: 32px
     background-color: none
 
-    &:hover
-      transform: scale(1.1)
+    &:active
+      transform: scale(.9)
 
     &--refresh
       touch-action: manipulation
@@ -77,6 +78,9 @@ body
     &--copy
       margin-left: 6px
       touch-action: manipulation
+
+      &.copied
+        opacity: 0.4
 
 .options
   &__title
@@ -94,7 +98,7 @@ body
     font-size: 2.1em
     text-align: center
 
-    border: 1px solid $grayColor
+    border: 1px solid $colorGray
     border-radius: 5px
     background: none
     outline: none
@@ -109,7 +113,7 @@ body
     margin-left: 10px
     cursor: pointer
     border-radius: 3px
-    background: $grayColor
+    background: $colorGray
     outline: none
 
     &::-webkit-slider-thumb
@@ -118,15 +122,15 @@ body
       width: 25px
       height: 25px
       border-radius: 4px
-      background: #ffffff
+      background: $colorWhite
       cursor: pointer
-      border: 2px solid $grayColor
+      border: 2px solid $colorGray
 
     &::-moz-range-thumb
       width: 25px
       height: 25px
       border-radius: 5px
-      background: $grayColor
+      background: $colorGray
       cursor: pointer
 
   &__checkboxes
@@ -154,13 +158,10 @@ body
     left: 0
     height: 25px
     width: 25px
-    background-color: #eee
-
-  &__label:hover .options__checkbox ~ .options__checkmark
-    background-color: #ccc
+    background-color: $colorWhiteGray
 
   &__label .options__checkbox:checked ~ .options__checkmark
-    background-color: $grayColor
+    background-color: $colorGray
 
   &__checkmark:after
     content: ""
@@ -192,7 +193,7 @@ body
   .main__container
     display: flex
     flex-direction: column
-    min-width: 230px
+    width: 230px
 
   .password__input
     font-size: 0.9em
@@ -213,3 +214,7 @@ body
   .options__checkboxes
     margin-top: 20px
     margin-left: 10px
+
+
+
+@import switch

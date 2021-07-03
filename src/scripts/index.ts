@@ -1,5 +1,7 @@
 import '../styles/index.sass';
 
+import localization from '../utils/lang/localization';
+
 
 class PassGenerator {
   lowChar: string;
@@ -7,6 +9,7 @@ class PassGenerator {
   numbers: string;
   symbols: string;
   classNameForCopied: string;
+  textForCopied: string;
   checkboxesState: any;
   lengthPassword: number;
   passwordField: HTMLInputElement;
@@ -16,6 +19,7 @@ class PassGenerator {
   range: HTMLInputElement;
   optionsContainer: HTMLElement;
   checkboxes: NodeListOf<HTMLInputElement>;
+  switchLang: HTMLInputElement;
   
   constructor() {
     this.lowChar = 'abcdefghijklmnopqrstuvwxyz';
@@ -24,6 +28,7 @@ class PassGenerator {
     this.symbols = '^! ;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
 
     this.classNameForCopied = 'copied';
+    this.textForCopied = 'Пароль скопирован';
 
     this.checkboxesState = [];
     this.lengthPassword = 4;
@@ -38,6 +43,8 @@ class PassGenerator {
     this.optionsContainer = document.querySelector('.js-options') as HTMLElement;
 
     this.checkboxes = document.querySelectorAll('.js-options__checkbox');
+
+    this.switchLang = document.querySelector('.js-switcher__checkbox') as HTMLInputElement;
 
 
     this.setListeners();
@@ -58,6 +65,9 @@ class PassGenerator {
     this.copy.addEventListener('click', () => {
       this.getCopyOfPassword()
     });
+    this.switchLang.addEventListener('change', () => {
+      this.switchLocalization();
+    });
   }
 
   getCopyOfPassword() {
@@ -66,7 +76,7 @@ class PassGenerator {
       this.passwordField.select();
       document.execCommand('copy');
 
-      this.passwordField.value = 'Пароль скопирован';
+      this.passwordField.value = this.textForCopied;
       this.passwordField.disabled = true;
 
       this.copy.classList.add(this.classNameForCopied);
@@ -134,7 +144,23 @@ class PassGenerator {
     }
     this.passwordField.value = password;
   }
-}
 
+  switchLocalization() {
+    const selectedLang: string = (this.switchLang.checked) ? 'en' : 'rus';
+    const activeLang = localization(selectedLang);
+
+    document.querySelector('title')!.textContent = activeLang.title;
+    document.querySelector('.js-header__title')!.textContent = activeLang.mainHeader;
+    document.querySelector('.js-options__title')!.textContent = activeLang.passwordLengthHeader;
+
+    document.querySelectorAll('.js-options__name').forEach((el, index) => {
+      el.textContent = activeLang.label[index];
+    });
+
+    this.textForCopied = activeLang.successfulCopy;
+    
+    this.getValueOfCheckboxes();
+  }
+}
 
 window.addEventListener('load', () => new PassGenerator());
