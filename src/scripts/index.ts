@@ -10,7 +10,7 @@ class PassGenerator {
   symbols: string;
   classNameForCopied: string;
   textForCopied: string;
-  checkboxesState: any;
+  checkboxesState: string[];
   lengthPassword: number;
   passwordField: HTMLInputElement;
   refresh: HTMLElement;
