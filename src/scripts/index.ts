@@ -58,6 +58,10 @@ class PassGenerator {
       this.getValueOfCheckboxes(event);
     });
 
+    this.range.addEventListener('input', () => {
+      this.getValueOfRange();
+    });
+
     this.refresh.addEventListener('click', (event: MouseEvent) => {
       this.getValueOfCheckboxes(event)
     });
@@ -104,11 +108,11 @@ class PassGenerator {
       this.getValueOfRange();
     }
   }
-
+  
   getValueOfRange() {
     this.lengthPassword = Number(this.range.value);
     this.showPassLength.value = this.range.value;
-
+    
     this.createPassword();
   }
 
