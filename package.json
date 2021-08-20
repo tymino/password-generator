@@ -1,6 +1,6 @@
 {
   "name": "password-generator",
-  "version": "2.2.7",
+  "version": "2.2.9",
   "main": "index.ts",
   "repository": "https://github.com/tymino/Password-Generator.git",
   "author": "tymino",

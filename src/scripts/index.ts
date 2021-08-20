@@ -2,7 +2,6 @@ import '../styles/index.sass';
 
 import localization from '../utils/lang/localization';
 
-
 class PassGenerator {
   lowChar: string;
   upperChar: string;
@@ -17,15 +16,15 @@ class PassGenerator {
   copy: HTMLElement;
   showPassLength: HTMLInputElement;
   range: HTMLInputElement;
-  optionsContainer: HTMLElement;
+  checkboxesContainer: HTMLElement;
   checkboxes: NodeListOf<HTMLInputElement>;
   switchLang: HTMLInputElement;
-  
+
   constructor() {
     this.lowChar = 'abcdefghijklmnopqrstuvwxyz';
     this.upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     this.numbers = '0123456789';
-    this.symbols = '^! ;#%$&:?|\"\'\`\\/.,*{}()[]-_+=@<>~';
+    this.symbols = '^! ;#%$&:?|"\'`\\/.,*{}()[]-_+=@<>~';
 
     this.classNameForCopied = 'copied';
     this.textForCopied = 'Пароль скопирован';
@@ -33,19 +32,17 @@ class PassGenerator {
     this.checkboxesState = [];
     this.lengthPassword = 4;
 
-
-    this.passwordField = document.querySelector('.password__input') as HTMLInputElement;
+    this.passwordField = document.querySelector('.js-password__input') as HTMLInputElement;
     this.refresh = document.querySelector('.js-password__image--refresh') as HTMLElement;
     this.copy = document.querySelector('.js-password__image--copy') as HTMLElement;
 
     this.showPassLength = document.querySelector('.js-options__input-text') as HTMLInputElement;
     this.range = document.querySelector('.js-options__input-range') as HTMLInputElement;
-    this.optionsContainer = document.querySelector('.js-options') as HTMLElement;
 
+    this.checkboxesContainer = document.querySelector('.js-options__checkboxes') as HTMLElement;
     this.checkboxes = document.querySelectorAll('.js-options__checkbox');
 
     this.switchLang = document.querySelector('.js-switcher__checkbox') as HTMLInputElement;
-
 
     this.setListeners();
 
@@ -54,7 +51,7 @@ class PassGenerator {
   }
 
   setListeners() {
-    this.optionsContainer.addEventListener('change', (event: Event) => {
+    this.checkboxesContainer.addEventListener('change', (event: Event) => {
       this.getValueOfCheckboxes(event);
     });
 
@@ -63,12 +60,13 @@ class PassGenerator {
     });
 
     this.refresh.addEventListener('click', (event: MouseEvent) => {
-      this.getValueOfCheckboxes(event)
+      this.getValueOfCheckboxes(event);
     });
-    
+
     this.copy.addEventListener('click', () => {
-      this.getCopyOfPassword()
+      this.getCopyOfPassword();
     });
+
     this.switchLang.addEventListener('change', () => {
       this.switchLocalization();
     });
@@ -93,12 +91,12 @@ class PassGenerator {
     this.copy.classList.remove(this.classNameForCopied);
     this.checkboxesState = [];
 
-    this.checkboxes.forEach(elem => {
+    this.checkboxes.forEach((elem) => {
       elem.checked ? this.checkboxesState.push(elem.value) : 0;
     });
 
     if (this.checkboxesState.length < 1) {
-      this.checkboxes.forEach(checkbox => {
+      this.checkboxes.forEach((checkbox) => {
         if (checkbox == event!.target) {
           checkbox.checked = true;
           this.checkboxesState.push(checkbox.value);
@@ -108,11 +106,11 @@ class PassGenerator {
       this.getValueOfRange();
     }
   }
-  
+
   getValueOfRange() {
     this.lengthPassword = Number(this.range.value);
     this.showPassLength.value = this.range.value;
-    
+
     this.createPassword();
   }
 
@@ -150,7 +148,7 @@ class PassGenerator {
   }
 
   switchLocalization() {
-    const selectedLang: string = (this.switchLang.checked) ? 'en' : 'rus';
+    const selectedLang: string = this.switchLang.checked ? 'en' : 'rus';
     const activeLang = localization(selectedLang);
 
     document.querySelector('title')!.textContent = activeLang.title;
@@ -162,7 +160,7 @@ class PassGenerator {
     });
 
     this.textForCopied = activeLang.successfulCopy;
-    
+
     this.getValueOfCheckboxes();
   }
 }
