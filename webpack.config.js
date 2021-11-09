@@ -8,7 +8,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, './dist'),
+    static: path.join(__dirname, './dist'),
     open: true,
     compress: true,
     hot: true,
