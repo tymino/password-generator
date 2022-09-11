@@ -73,8 +73,6 @@ class PassGenerator {
       this.checkboxesState.length ** 2 * (password.length / 2);
     const weghtPasswordPercent = (weightPassword / 256) * 100;
 
-    console.log(weghtPasswordPercent);
-
     if (weghtPasswordPercent > 50) {
       this.progress.classList.add('options__progress--green')
     } else {
