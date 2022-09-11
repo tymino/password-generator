@@ -74,9 +74,9 @@ class PassGenerator {
     const weghtPasswordPercent = (weightPassword / 256) * 100;
 
     if (weghtPasswordPercent > 50) {
-      this.progress.classList.add('options__progress--green')
+      this.progress.classList.add('options__progress--green');
     } else {
-      this.progress.classList.remove('options__progress--green')
+      this.progress.classList.remove('options__progress--green');
     }
 
     this.progress.value = weghtPasswordPercent;
