@@ -133,6 +133,28 @@ body
       background: $colorGray
       cursor: pointer
 
+  &__progress
+    width: 100%
+    background: $colorWhiteGray
+    border: 0
+    height: 6px
+    border-radius: 10px
+
+    &::-webkit-progress-bar
+      border-radius: 10px
+      background: $colorWhiteGray
+      
+    &::-webkit-progress-value
+      border-radius: 10px
+      background: $colorYellow
+      
+    &::-moz-progress-bar
+      border-radius: 10px
+      background: $colorYellow
+
+    &--green::-webkit-progress-value
+      background: $colorGreen
+
   &__checkboxes
     display: flex
     flex-direction: column
