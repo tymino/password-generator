@@ -1,16 +1,28 @@
 <template>
-  <HelloWorld />
+  <Header>{{ title  }}</Header>
+  <main></main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+
+import Header from '@/components/Header.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { Header },
+  setup() {
+    const title = 'Создайте свой пароль';
+    const checkboxes = ['low', 'up', 'num', 'sym'];
+
+    return {
+      title,
+      checkboxes,
+    };
+  },
+  mounted() {
+    document.title = 'Test title';
+  },
 });
 </script>
 

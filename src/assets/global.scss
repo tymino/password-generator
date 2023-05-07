@@ -1,0 +1,33 @@
+:root {
+  --font-family: 'Roboto Mono', monospace;
+
+  --color-white: #fff;
+  --color-whiteGray: #ccc;
+  --color-gray: #666;
+  --color-black: #000;
+  --color-yellow: #e1fd44;
+  --color-green: #0dfa21;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 13px;
+  font-family: var(--font-family);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
