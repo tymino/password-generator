@@ -1,22 +1,35 @@
 <template>
-  <Header>{{ title  }}</Header>
+  <Header>{{ title }}</Header>
+  <Checkbox
+    label="test"
+    name="test"
+    :checked="checked"
+    v-model:isCheck="checked"
+  />
   <main></main>
 </template>
 
+
+
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import Header from '@/components/Header.vue';
+import Checkbox from '@/components/UI/Checkbox.vue';
+
+// неоднозначные символы il1Lo0O
 
 export default defineComponent({
   name: 'App',
-  components: { Header },
+  components: { Header, Checkbox },
   setup() {
     const title = 'Создайте свой пароль';
     const checkboxes = ['low', 'up', 'num', 'sym'];
+    const checked = ref(false);
 
     return {
       title,
+      checked,
       checkboxes,
     };
   },

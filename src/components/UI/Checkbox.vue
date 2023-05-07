@@ -1,7 +1,12 @@
 <template>
-  <input type="checkbox" :checked="true" :id="fieldId" class="mr-2" />
+  <input
+    type="checkbox"
+    :checked="checked"
+    :id="name"
+    @input="(event: any) => $emit('update:isCheck', event.target.checked)"
+  />
   <label
-    :for="fieldId"
+    :for="name"
     class="flex flex-row items-center font-bold cursor-pointer"
   >
     {{ label }}
@@ -15,7 +20,7 @@ export default defineComponent({
   name: 'ui-checkbox',
   props: {
     label: String,
-    fieldId: {
+    name: {
       type: String,
       required: true,
     },
