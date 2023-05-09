@@ -1,16 +1,14 @@
 <template>
-  <input
-    type="checkbox"
-    :checked="checked"
-    :id="name"
-    @input="(event: any) => $emit('update:isCheck', event.target.checked)"
-  />
-  <label
-    :for="name"
-    class="flex flex-row items-center font-bold cursor-pointer"
-  >
-    {{ label }}
-  </label>
+  <div>
+    <input
+      type="checkbox"
+      :id="id"
+      :checked="checked"
+      :value="id"
+      @input="handleChecked"
+    />
+    <label :for="id">{{ name }}</label>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,14 +17,18 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ui-checkbox',
   props: {
-    label: String,
-    name: {
-      type: String,
-      required: true,
-    },
-    checked: {
-      type: Boolean,
-    },
+    id: String,
+    name: String,
+    checked: Boolean,
+  },
+  setup(props, { emit }) {
+    function handleChecked(event: Event) {
+      const value = (event.target as HTMLInputElement).value;
+
+      emit('update:checked', value);
+    }
+
+    return { handleChecked };
   },
 });
 </script>

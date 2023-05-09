@@ -1,41 +1,48 @@
 <template>
-  <Header>{{ title }}</Header>
-  <Checkbox
-    label="test"
-    name="test"
-    :checked="checked"
-    v-model:isCheck="checked"
-  />
+  <Header>{{ checkboxes.map((c) => c.isChecked) }}</Header>
+  <CheckboxList :checkboxes="checkboxes" @updateCheckboxes="updateCheckboxes" />
   <main></main>
 </template>
-
-
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import { ICheckboxes } from '@/types';
 import Header from '@/components/Header.vue';
-import Checkbox from '@/components/UI/Checkbox.vue';
+import CheckboxList from '@/components/CheckboxList.vue';
 
 // неоднозначные символы il1Lo0O
 
 export default defineComponent({
   name: 'App',
-  components: { Header, Checkbox },
+  components: { Header, CheckboxList },
   setup() {
-    const title = 'Создайте свой пароль';
-    const checkboxes = ['low', 'up', 'num', 'sym'];
-    const checked = ref(false);
+    // const title = 'Создайте свой пароль';
+
+    const checkboxes = ref<ICheckboxes[]>([
+      { id: '0', name: 'lower', isChecked: false },
+      { id: '1', name: 'upper', isChecked: true },
+      { id: '2', name: 'number', isChecked: false },
+      { id: '3', name: 'symbols', isChecked: false },
+    ]);
+
+    function updateCheckboxes(id: string) {
+      console.log('app', id);
+
+      checkboxes.value = checkboxes.value.map((item) => ({
+        ...item,
+        isChecked: item.id === id ? !item.isChecked : item.isChecked,
+      }));
+    }
 
     return {
-      title,
-      checked,
       checkboxes,
+      updateCheckboxes,
     };
   },
-  mounted() {
-    document.title = 'Test title';
-  },
+  // mounted() {
+  //   document.title = 'Test title';
+  // },
 });
 </script>
 
