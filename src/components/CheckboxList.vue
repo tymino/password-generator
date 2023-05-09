@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <div class="checkbox-container" v-for="name in checkboxesName" :key="name">
-      <input type="checkbox" :id="name" :value="name" v-model="checkedNames" />
-      <label :for="name">{{ name }}</label>
-    </div> -->
-
     <Checkbox
       v-for="{ id, name, isChecked } in checkboxes"
       :key="id"
@@ -16,31 +11,26 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue';
-
-import { ICheckboxes } from '@/types';
+<script lang="ts" setup>
 import Checkbox from '@/components/UI/Checkbox.vue';
 
-export default defineComponent({
-  name: 'c-checkbox-list',
-  components: { Checkbox },
-  props: {
-    checkboxes: {
-      required: true,
-      type: Array as PropType<ICheckboxes[]>,
-    },
-  },
-  setup(props, { emit }) {
-    const emitId = (id: string) => {
-      emit('updateCheckboxes', id);
-    };
+import { ICheckboxes } from '@/types';
+import { defineEmits, defineProps } from 'vue';
 
-    return {
-      emitId,
-    };
-  },
-});
+interface IProps {
+  checkboxes: ICheckboxes[];
+}
+
+interface IEmit {
+  (e: 'updateCheckboxes', id: string): void;
+}
+
+defineProps<IProps>();
+const emit = defineEmits<IEmit>();
+
+const emitId = (id: string) => {
+  emit('updateCheckboxes', id);
+};
 </script>
 
 <style lang="scss" scoped></style>

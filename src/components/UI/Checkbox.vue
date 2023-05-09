@@ -14,28 +14,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
+export default {
   name: 'ui-checkbox',
-  props: {
-    id: String,
-    name: String,
-    checked: Boolean,
-  },
-  setup(props, { emit }) {
-    function handleChecked(event: Event) {
-      const value = (event.target as HTMLInputElement).value;
-
-      emit('update:checked', value);
-    }
-
-    return { handleChecked };
-  },
-});
+};
 </script>
 
-<style scoped lang="scss">
+<script lang="ts" setup>
+import { defineEmits, defineProps } from 'vue';
+
+interface IProps {
+  id: string;
+  name: string;
+  checked: boolean;
+}
+
+interface IEmit {
+  (e: 'update:checked', id: string): void;
+}
+
+defineProps<IProps>();
+const emit = defineEmits<IEmit>();
+
+const handleChecked = (event: Event) => {
+  const id = (event.target as HTMLInputElement).value;
+  emit('update:checked', id);
+};
+</script>
+
+<style lang="scss" scoped>
 .checkbox {
   position: absolute;
   opacity: 0;
