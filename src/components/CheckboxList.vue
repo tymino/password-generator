@@ -33,10 +33,6 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const emitId = (id: string) => {
-      console.log('emitId', id);
-
-
-
       emit('updateCheckboxes', id);
     };
 

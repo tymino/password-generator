@@ -1,10 +1,10 @@
 :root {
   --font-family: 'Roboto Mono', monospace;
 
-  --color-white: #fff;
-  --color-whiteGray: #ccc;
-  --color-gray: #666;
-  --color-black: #000;
+  --color-background-main: #fff;
+  --color-background-sub: #ccc;
+  --color-input: #666;
+  --color-border: #000;
   --color-yellow: #e1fd44;
   --color-green: #0dfa21;
 }
@@ -17,6 +17,7 @@
 html {
   font-size: 13px;
   font-family: var(--font-family);
+  color: var(--color-border);
 }
 
 body {

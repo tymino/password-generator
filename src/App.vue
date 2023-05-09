@@ -1,5 +1,5 @@
 <template>
-  <Header>{{ checkboxes.map((c) => c.isChecked) }}</Header>
+  <Header>{{ title }}</Header>
   <CheckboxList :checkboxes="checkboxes" @updateCheckboxes="updateCheckboxes" />
   <main></main>
 </template>
@@ -11,24 +11,21 @@ import { ICheckboxes } from '@/types';
 import Header from '@/components/Header.vue';
 import CheckboxList from '@/components/CheckboxList.vue';
 
-// неоднозначные символы il1Lo0O
-
 export default defineComponent({
   name: 'App',
   components: { Header, CheckboxList },
   setup() {
-    // const title = 'Создайте свой пароль';
+    const title = 'Test title';
 
     const checkboxes = ref<ICheckboxes[]>([
       { id: '0', name: 'lower', isChecked: false },
       { id: '1', name: 'upper', isChecked: true },
       { id: '2', name: 'number', isChecked: false },
       { id: '3', name: 'symbols', isChecked: false },
+      // { id: '4', name: 'il1Lo0O', isChecked: false },
     ]);
 
     function updateCheckboxes(id: string) {
-      console.log('app', id);
-
       checkboxes.value = checkboxes.value.map((item) => ({
         ...item,
         isChecked: item.id === id ? !item.isChecked : item.isChecked,
@@ -36,6 +33,7 @@ export default defineComponent({
     }
 
     return {
+      title,
       checkboxes,
       updateCheckboxes,
     };
@@ -46,13 +44,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
-</style>
+</style> -->
