@@ -54,6 +54,7 @@ const handleChecked = (event: Event) => {
     height: 25px;
     width: 25px;
     background-color: var(--color-background-sub);
+    border-radius: 4px;
 
     &:after {
       content: '';

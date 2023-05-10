@@ -1,12 +1,20 @@
+// $colorWhite: #fff
+// $colorWhiteGray: #ccc
+// $colorGray: #666
+// $colorBlack: #000
+// $colorYellow: #e1fd44
+// $colorGreen: #0dfa21
+
 :root {
   --font-family: 'Roboto Mono', monospace;
 
-  --color-background-main: #fff;
-  --color-background-sub: #ccc;
-  --color-input: #666;
-  --color-border: #000;
-  --color-yellow: #e1fd44;
-  --color-green: #0dfa21;
+  --color-background-main: hsl(0, 0%, 100%);
+  --color-background-sub: hsl(0, 0%, 80%);
+  --color-input: hsl(0, 0%, 40%);
+  --color-border: hsl(0, 0%, 0%);
+  --color-progress-easy: hsl(2, 80%, 50%);
+  --color-progress-medium: hsl(39, 80%, 50%);
+  --color-progress-hard: hsl(125, 80%, 50%);
 }
 
 * {
