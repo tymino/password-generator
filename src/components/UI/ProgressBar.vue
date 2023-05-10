@@ -24,26 +24,33 @@ const getColorClass = computed(() => {
 <style lang="scss" scoped>
 .progress {
   width: 100%;
+  height: 6px;
   background: var(--color-background-sub);
   border: 0;
-  height: 6px;
   border-radius: 10px;
 
   &::-webkit-progress-bar {
-    border-radius: 10px;
     background: var(--color-background-sub);
+    border-radius: 10px;
   }
 }
 
-.easy::-webkit-progress-value {
-  background: var(--color-progress-easy);
+@mixin progressColorStyle($color) {
+  &::-webkit-progress-value {
+    background: var($color);
+    transition: all ease 0.5s;
+  }
 }
 
-.medium::-webkit-progress-value {
-  background: var(--color-progress-medium);
+.easy {
+  @include progressColorStyle(--color-progress-easy);
 }
 
-.hard::-webkit-progress-value {
-  background: var(--color-progress-hard);
+.medium {
+  @include progressColorStyle(--color-progress-medium);
+}
+
+.hard {
+  @include progressColorStyle(--color-progress-hard);
 }
 </style>
