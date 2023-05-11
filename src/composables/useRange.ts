@@ -1,8 +1,9 @@
 import { Ref, ref, watch } from 'vue';
 
 export const useRange = (countChecked: Ref<number>, defaulValue = 12) => {
+  const DEFAULT_PROGRESS_VALUE = 5;
   const rangeValue = ref(defaulValue);
-  const progressValue = ref(10);
+  const progressValue = ref(DEFAULT_PROGRESS_VALUE);
 
   const minmax = (min: number, max: number) => {
     return rangeValue.value < 16 ? min : max;
@@ -21,7 +22,7 @@ export const useRange = (countChecked: Ref<number>, defaulValue = 12) => {
         break;
 
       default:
-        progressValue.value = 5;
+        progressValue.value = DEFAULT_PROGRESS_VALUE;
         break;
     }
   };
