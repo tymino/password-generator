@@ -20,7 +20,8 @@
     v-model:stateToggle="stateToggle"
     :namesToggle="namesToggle"
   />
-  <main></main>
+
+  {{ activeLanguage }}
 </template>
 
 <script lang="ts" setup>
@@ -32,12 +33,14 @@ import RangePass from '@/components/RangePass.vue';
 import Toggle from '@/components/UI/Toggle.vue';
 
 import { useCheckboxes } from '@/composables/useCheckboxes';
+import { useLocalization } from '@/composables/useLocalization';
 import { useRange } from '@/composables/useRange';
 import { useToggle } from '@/composables/useToggle';
 
 const title = 'Test title';
 
 const { stateToggle, namesToggle } = useToggle();
+const { activeLanguage } = useLocalization(stateToggle);
 const { checkboxes, countChecked, updateCheckboxes } = useCheckboxes();
 const { rangeValue, progressValue } = useRange(countChecked);
 </script>
