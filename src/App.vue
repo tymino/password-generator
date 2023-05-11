@@ -1,8 +1,25 @@
 <template>
   <Header>{{ title }}</Header>
-  <CheckboxList :checkboxes="checkboxes" @updateCheckboxes="updateCheckboxes" />
-  <RangePass v-model:rangeValue="rangeValue" :progressValue="progressValue" />
-  <Toggle v-model:stateToggle="stateToggle" :namesToggle="namesToggle" />
+  <main>
+    <div class="options">
+      <RangePass
+        class="options__range"
+        v-model:rangeValue="rangeValue"
+        :progressValue="progressValue"
+      />
+      <CheckboxList
+        class="options__checkbox-list"
+        :checkboxes="checkboxes"
+        @updateCheckboxes="updateCheckboxes"
+      />
+    </div>
+  </main>
+
+  <Toggle
+    class="options__toggle"
+    v-model:stateToggle="stateToggle"
+    :namesToggle="namesToggle"
+  />
   <main></main>
 </template>
 
@@ -25,7 +42,32 @@ const { checkboxes, countChecked, updateCheckboxes } = useCheckboxes();
 const { rangeValue, progressValue } = useRange(countChecked);
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 #app {
+  display: flex;
+  flex-direction: column;
 }
-</style> -->
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  display: flex;
+  width: 430px;
+  margin-bottom: 20px;
+  padding: 18px 26px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+
+  &__checkbox-list {
+    margin-left: 30px;
+  }
+
+  &__toggle {
+    align-self: flex-end;
+  }
+}
+</style>

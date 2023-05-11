@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Checkbox
       v-for="{ id, name, isChecked } in checkboxes"
       :key="id"
@@ -32,5 +32,3 @@ const emitId = (id: string) => {
   emit('updateCheckboxes', id);
 };
 </script>
-
-<style lang="scss" scoped></style>
