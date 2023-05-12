@@ -1,6 +1,11 @@
-import { Ref, ref, watch } from 'vue';
+import { Ref, ref, watch, unref } from 'vue';
+import { ICurrentLang } from '@/types/ILocalization';
+import { ICheckboxes } from '@/types/ICheckboxes';
 
-export const useRange = (countChecked: Ref<number>, defaulValue = 12) => {
+export const useRange = (
+  checkedCheckboxesCount: Ref<number>,
+  defaulValue = 12
+) => {
   const DEFAULT_PROGRESS_VALUE = 5;
   const rangeValue = ref(defaulValue);
   const progressValue = ref(DEFAULT_PROGRESS_VALUE);
@@ -10,7 +15,9 @@ export const useRange = (countChecked: Ref<number>, defaulValue = 12) => {
   };
 
   const setProgressValue = () => {
-    switch (countChecked.value) {
+    console.log(checkedCheckboxesCount.value);
+
+    switch (checkedCheckboxesCount.value) {
       case 4:
         progressValue.value = minmax(50, 100);
         break;
@@ -27,7 +34,7 @@ export const useRange = (countChecked: Ref<number>, defaulValue = 12) => {
     }
   };
 
-  watch(countChecked, setProgressValue);
+  watch(checkedCheckboxesCount, setProgressValue);
   watch(rangeValue, setProgressValue);
 
   return {

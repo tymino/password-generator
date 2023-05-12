@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts" setup>
-import Checkbox from '@/components/UI/Checkbox.vue';
-
-import { ICheckboxes } from '@/types';
 import { defineEmits, defineProps } from 'vue';
+
+import Checkbox from '@/components/UI/Checkbox.vue';
+import { ICheckboxes } from '@/types/ICheckboxes';
 
 interface IProps {
   checkboxes: ICheckboxes[];

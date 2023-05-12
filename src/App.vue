@@ -20,8 +20,6 @@
     v-model:stateToggle="stateToggle"
     :namesToggle="namesToggle"
   />
-
-  {{ activeLanguage }}
 </template>
 
 <script lang="ts" setup>
@@ -41,8 +39,9 @@ const title = 'Test title';
 
 const { stateToggle, namesToggle } = useToggle();
 const { activeLanguage } = useLocalization(stateToggle);
-const { checkboxes, countChecked, updateCheckboxes } = useCheckboxes();
-const { rangeValue, progressValue } = useRange(countChecked);
+const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
+  useCheckboxes(activeLanguage);
+const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);
 </script>
 
 <style lang="scss">
@@ -66,7 +65,7 @@ main {
   border-radius: 5px;
 
   &__checkbox-list {
-    margin-left: 30px;
+    margin-left: 20px;
   }
 
   &__toggle {

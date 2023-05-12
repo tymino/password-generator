@@ -1,4 +1,4 @@
-interface ICurrentLang {
+export interface ICurrentLang {
   tabTitle: string;
   headerMain: string;
   headerLengthPassword: string;
@@ -6,9 +6,7 @@ interface ICurrentLang {
   successfulCopy: string;
 }
 
-interface ILocalization {
+export interface ILocalization {
   rus: ICurrentLang;
   en: ICurrentLang;
 }
-
-export default ILocalization;
