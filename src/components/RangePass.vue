@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p class="title">Длина пароля</p>
+    <p class="title">{{ title }}</p>
     <div class="wrapper">
       <div class="length-pass-value">{{ rangeValue }}</div>
       <input
@@ -23,6 +23,7 @@ import ProgressBar from '@/components/UI/ProgressBar.vue';
 interface IProps {
   rangeValue: number;
   progressValue: number;
+  title: string;
 }
 
 interface IEmit {

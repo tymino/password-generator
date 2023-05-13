@@ -1,19 +1,15 @@
-import { Ref, computed, ref, watch } from 'vue';
-import { useLocalization } from './useLocalization';
-
+import { Ref, ref, watch } from 'vue';
 import { ICheckboxes } from '@/types/ICheckboxes';
 
 export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   const checkedCheckboxesCount = ref(0);
-  const checkboxes = ref<ICheckboxes[]>([
+  const checkboxes = ref([
     { id: '0', name: labelCheckbox.value[0], isChecked: false },
     { id: '1', name: labelCheckbox.value[1], isChecked: true },
     { id: '2', name: labelCheckbox.value[2], isChecked: false },
     { id: '3', name: labelCheckbox.value[3], isChecked: false },
     // { id: '4', name: 'il1Lo0O', isChecked: false },
   ]);
-
-  console.log(computed(() => labelCheckbox));
 
   const updateCheckboxes = (id: string) => {
     let countChecked = 0;
@@ -36,8 +32,6 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   };
 
   const updateLanguageName = () => {
-    console.log('checkbox', labelCheckbox);
-
     checkboxes.value = checkboxes.value.map((item, index) => {
       return {
         ...item,

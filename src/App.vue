@@ -1,9 +1,10 @@
 <template>
-  <Header>{{ title }}</Header>
+  <Header>{{ headerMain }}</Header>
   <main>
     <div class="options">
       <RangePass
         class="options__range"
+        :title="headerLengthPassword"
         v-model:rangeValue="rangeValue"
         :progressValue="progressValue"
       />
@@ -23,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, toRef, watch } from 'vue';
+// import { reactive, ref, toRef, watch } from 'vue';
 
 import Header from '@/components/Header.vue';
 import CheckboxList from '@/components/CheckboxList.vue';
@@ -35,10 +36,9 @@ import { useLocalization } from '@/composables/useLocalization';
 import { useRange } from '@/composables/useRange';
 import { useToggle } from '@/composables/useToggle';
 
-const title = 'Test title';
-
 const { stateToggle, namesToggle } = useToggle();
-const { labelCheckbox } = useLocalization(stateToggle);
+const { tabTitle, headerMain, headerLengthPassword, labelCheckbox } =
+  useLocalization(stateToggle);
 const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
   useCheckboxes(labelCheckbox);
 const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);

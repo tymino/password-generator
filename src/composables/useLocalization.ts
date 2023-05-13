@@ -1,4 +1,4 @@
-import { Ref, ToRefs, reactive, toRef, toRefs, unref, watch } from 'vue';
+import { Ref, ref, unref, watch } from 'vue';
 
 import { ILocalization, ICurrentLang } from '@/types/ILocalization';
 import { ELanguage } from '@/types/ELanguage';
@@ -21,19 +21,41 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
     },
   };
 
-  const activeLanguage = reactive(langStore[ELanguage.rus]);
+  const tabTitle = ref(langStore[ELanguage.rus].tabTitle);
+  const headerMain = ref(langStore[ELanguage.rus].headerMain);
+  const headerLengthPassword = ref(
+    langStore[ELanguage.rus].headerLengthPassword
+  );
+  const labelCheckbox = ref(langStore[ELanguage.rus].labelCheckbox);
+  const successfulCopy = ref(langStore[ELanguage.rus].successfulCopy);
 
-  const setActiveLanguage = (): ToRefs<ICurrentLang> => {
+  const setActiveLanguage = () => {
     const prop = unref(toggleState) ? 'en' : 'rus';
 
-    console.log('lang', toggleState.value);
+    const {
+      tabTitle: title,
+      headerMain: header,
+      headerLengthPassword: lengthPass,
+      labelCheckbox: labelBox,
+      successfulCopy: copy,
+    } = langStore[ELanguage[prop]];
 
-    return toRefs(Object.assign(activeLanguage, langStore[ELanguage[prop]]));
+    tabTitle.value = title;
+    headerMain.value = header;
+    headerLengthPassword.value = lengthPass;
+    labelCheckbox.value = labelBox;
+    successfulCopy.value = copy;
   };
 
   watch(toggleState, setActiveLanguage);
 
   setActiveLanguage();
 
-  // return toRefs(Object.assign(activeLanguage, langStore[ELanguage['en']]));
+  return {
+    tabTitle,
+    headerMain,
+    headerLengthPassword,
+    labelCheckbox,
+    successfulCopy,
+  };
 };
