@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, toRef, watch } from 'vue';
 
 import Header from '@/components/Header.vue';
 import CheckboxList from '@/components/CheckboxList.vue';
@@ -38,9 +38,9 @@ import { useToggle } from '@/composables/useToggle';
 const title = 'Test title';
 
 const { stateToggle, namesToggle } = useToggle();
-const { activeLanguage } = useLocalization(stateToggle);
+const { labelCheckbox } = useLocalization(stateToggle);
 const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
-  useCheckboxes(activeLanguage);
+  useCheckboxes(labelCheckbox);
 const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);
 </script>
 

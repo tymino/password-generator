@@ -1,18 +1,19 @@
-import { Ref, ref, watch } from 'vue';
+import { Ref, computed, ref, watch } from 'vue';
 import { useLocalization } from './useLocalization';
 
 import { ICheckboxes } from '@/types/ICheckboxes';
-import { ICurrentLang } from '@/types/ILocalization';
 
-export const useCheckboxes = (activeLanguage: Ref<ICurrentLang>) => {
+export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   const checkedCheckboxesCount = ref(0);
   const checkboxes = ref<ICheckboxes[]>([
-    { id: '0', name: activeLanguage.value.labelCheckbox[0], isChecked: false },
-    { id: '1', name: activeLanguage.value.labelCheckbox[1], isChecked: true },
-    { id: '2', name: activeLanguage.value.labelCheckbox[2], isChecked: false },
-    { id: '3', name: activeLanguage.value.labelCheckbox[3], isChecked: false },
+    { id: '0', name: labelCheckbox.value[0], isChecked: false },
+    { id: '1', name: labelCheckbox.value[1], isChecked: true },
+    { id: '2', name: labelCheckbox.value[2], isChecked: false },
+    { id: '3', name: labelCheckbox.value[3], isChecked: false },
     // { id: '4', name: 'il1Lo0O', isChecked: false },
   ]);
+
+  console.log(computed(() => labelCheckbox));
 
   const updateCheckboxes = (id: string) => {
     let countChecked = 0;
@@ -34,14 +35,18 @@ export const useCheckboxes = (activeLanguage: Ref<ICurrentLang>) => {
     checkedCheckboxesCount.value = countChecked;
   };
 
-  watch(activeLanguage, () => {
-    console.log('active');
+  const updateLanguageName = () => {
+    console.log('checkbox', labelCheckbox);
 
-    checkboxes.value = checkboxes.value.map((item, index) => ({
-      ...item,
-      name: activeLanguage.value.labelCheckbox[index],
-    }));
-  });
+    checkboxes.value = checkboxes.value.map((item, index) => {
+      return {
+        ...item,
+        name: labelCheckbox.value[index],
+      };
+    });
+  };
+
+  watch(labelCheckbox, updateLanguageName);
 
   return {
     checkboxes,
