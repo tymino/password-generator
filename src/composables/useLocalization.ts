@@ -1,11 +1,11 @@
-import { Ref, ref, unref, watch } from 'vue';
+import { Ref, reactive, toRefs, unref, watch } from 'vue';
 
 import { ILocalization, ICurrentLang } from '@/types/ILocalization';
 import { ELanguage } from '@/types/ELanguage';
 
 export const useLocalization = (toggleState: Ref<boolean>) => {
   const langStore: ILocalization = {
-    rus: {
+    ru: {
       tabTitle: 'Генератор паролей',
       headerMain: 'Создайте пароль',
       headerLengthPassword: 'Длина пароля',
@@ -21,41 +21,15 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
     },
   };
 
-  const tabTitle = ref(langStore[ELanguage.rus].tabTitle);
-  const headerMain = ref(langStore[ELanguage.rus].headerMain);
-  const headerLengthPassword = ref(
-    langStore[ELanguage.rus].headerLengthPassword
-  );
-  const labelCheckbox = ref(langStore[ELanguage.rus].labelCheckbox);
-  const successfulCopy = ref(langStore[ELanguage.rus].successfulCopy);
+  const activeLang = reactive({ ...langStore[ELanguage.ru] });
 
   const setActiveLanguage = () => {
-    const prop = unref(toggleState) ? 'en' : 'rus';
+    const prop = unref(toggleState) ? 'en' : 'ru';
 
-    const {
-      tabTitle: title,
-      headerMain: header,
-      headerLengthPassword: lengthPass,
-      labelCheckbox: labelBox,
-      successfulCopy: copy,
-    } = langStore[ELanguage[prop]];
-
-    tabTitle.value = title;
-    headerMain.value = header;
-    headerLengthPassword.value = lengthPass;
-    labelCheckbox.value = labelBox;
-    successfulCopy.value = copy;
+    Object.assign(activeLang, { ...langStore[ELanguage[prop]] });
   };
 
   watch(toggleState, setActiveLanguage);
 
-  setActiveLanguage();
-
-  return {
-    tabTitle,
-    headerMain,
-    headerLengthPassword,
-    labelCheckbox,
-    successfulCopy,
-  };
+  return toRefs(activeLang);
 };

@@ -7,6 +7,6 @@ export interface ICurrentLang {
 }
 
 export interface ILocalization {
-  rus: ICurrentLang;
+  ru: ICurrentLang;
   en: ICurrentLang;
 }

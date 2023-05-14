@@ -1,5 +1,4 @@
 import { Ref, ref, watch } from 'vue';
-import { ICheckboxes } from '@/types/ICheckboxes';
 
 export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   const checkedCheckboxesCount = ref(0);
