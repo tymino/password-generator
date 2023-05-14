@@ -1,8 +1,9 @@
 import { Ref, ref, watch } from 'vue';
+import { ICheckboxes } from '@/types/ICheckboxes';
 
 export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   const checkedCheckboxesCount = ref(0);
-  const checkboxes = ref([
+  const checkboxes = ref<ICheckboxes[]>([
     { id: '0', name: labelCheckbox.value[0], isChecked: false },
     { id: '1', name: labelCheckbox.value[1], isChecked: true },
     { id: '2', name: labelCheckbox.value[2], isChecked: false },

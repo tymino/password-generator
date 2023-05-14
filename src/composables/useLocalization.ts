@@ -21,7 +21,7 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
     },
   };
 
-  const activeLang = reactive({ ...langStore[ELanguage.ru] });
+  const activeLang = reactive<ICurrentLang>({ ...langStore[ELanguage.ru] });
 
   const setActiveLanguage = () => {
     const prop = unref(toggleState) ? 'en' : 'ru';

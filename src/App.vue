@@ -35,7 +35,6 @@ import { useCheckboxes } from '@/composables/useCheckboxes';
 import { useLocalization } from '@/composables/useLocalization';
 import { useRange } from '@/composables/useRange';
 import { useToggle } from '@/composables/useToggle';
-import { watch } from 'vue';
 
 const { stateToggle, namesToggle } = useToggle();
 const { tabTitle, headerMain, headerLengthPassword, labelCheckbox } =
