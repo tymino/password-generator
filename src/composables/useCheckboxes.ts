@@ -3,12 +3,32 @@ import { ICheckboxes } from '@/types/ICheckboxes';
 
 export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
   const checkedCheckboxesCount = ref(0);
+  // ?optimization return checkboxes?
   const checkboxes = ref<ICheckboxes[]>([
-    { id: '0', name: labelCheckbox.value[0], isChecked: false },
-    { id: '1', name: labelCheckbox.value[1], isChecked: true },
-    { id: '2', name: labelCheckbox.value[2], isChecked: false },
-    { id: '3', name: labelCheckbox.value[3], isChecked: false },
-    // { id: '4', name: 'il1Lo0O', isChecked: false },
+    {
+      id: '0',
+      name: labelCheckbox.value[0],
+      isChecked: false,
+      value: 'abcdefghjkmnpqrstuvwxyz',
+    },
+    {
+      id: '1',
+      name: labelCheckbox.value[1],
+      isChecked: false,
+      value: 'ABCDEFGHIJKMNPQRSTUVWXYZ',
+    },
+    {
+      id: '2',
+      name: labelCheckbox.value[2],
+      isChecked: true,
+      value: '23456789',
+    },
+    {
+      id: '3',
+      name: labelCheckbox.value[3],
+      isChecked: false,
+      value: '^! ;#%$&:?|"\'`\\/.,*{}()[]-_+=@<>~',
+    },
   ]);
 
   const updateCheckboxes = (id: string) => {

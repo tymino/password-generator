@@ -7,27 +7,37 @@
         class="icons__item icons__item-refresh"
         src="@/assets/icons/refresh.png"
         alt="image refresh"
+        @click="handleClickRefresh"
       />
       <img
         class="icons__item icons__item-copy"
         src="@/assets/icons/copy.png"
         alt="image copy"
-        @click="handleCopy"
+        @click="handleClickCopy"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 interface IProps {
   password: string;
 }
 
-const props = defineProps<IProps>();
+interface IEmit {
+  (e: 'updatePassword'): void;
+}
 
-const handleCopy = () => {
+const props = defineProps<IProps>();
+const emit = defineEmits<IEmit>();
+
+const handleClickRefresh = () => {
+  emit('updatePassword');
+};
+
+const handleClickCopy = () => {
   navigator.clipboard
     .writeText(props.password)
     .then(() => console.log('ok'))
