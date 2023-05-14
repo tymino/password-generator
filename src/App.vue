@@ -1,6 +1,7 @@
 <template>
   <Header>{{ headerMain }}</Header>
   <main>
+    <PassView password="qweqqwes@EW213"/>
     <div class="options">
       <RangePass
         class="options__range"
@@ -24,10 +25,11 @@
 </template>
 
 <script lang="ts" setup>
-// import { reactive, ref, toRef, watch } from 'vue';
+import { watch } from 'vue';
 
 import Header from '@/components/Header.vue';
 import CheckboxList from '@/components/CheckboxList.vue';
+import PassView from '@/components/PassView.vue';
 import RangePass from '@/components/RangePass.vue';
 import Toggle from '@/components/UI/Toggle.vue';
 
@@ -42,6 +44,8 @@ const { tabTitle, headerMain, headerLengthPassword, labelCheckbox } =
 const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
   useCheckboxes(labelCheckbox);
 const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);
+
+watch(tabTitle, () => (document.title = tabTitle.value));
 </script>
 
 <style lang="scss">
