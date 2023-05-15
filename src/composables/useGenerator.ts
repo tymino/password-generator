@@ -10,8 +10,13 @@ export const useGenerator = (
 
   const updatePassword = () => {
     const chars = checkboxes.value.reduce((str, item) => {
-      return item.isChecked ? str + item.value : str;
+      return item.isChecked ? str + item.payload : str;
     }, '');
+
+    if (chars.length === 0) {
+      password.value = '-- --';
+      return;
+    }
 
     let localPass = '';
 
@@ -22,8 +27,6 @@ export const useGenerator = (
     }
 
     password.value = localPass;
-
-    // console.log('createPass', localPass, localPass.length);
   };
 
   watch([rangeValue, checkboxes], updatePassword);
