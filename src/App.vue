@@ -1,7 +1,11 @@
 <template>
   <Header>{{ headerMain }}</Header>
   <main>
-    <PassView :password="password" @updatePassword="updatePassword" />
+    <PassView
+      :password="password"
+      @updatePassword="updatePassword"
+      :successfulCopy="successfulCopy"
+    />
     <div class="options">
       <RangePass
         class="options__range"
@@ -40,8 +44,13 @@ import { useRange } from '@/composables/useRange';
 import { useToggle } from '@/composables/useToggle';
 
 const { stateToggle, namesToggle } = useToggle();
-const { tabTitle, headerMain, headerLengthPassword, labelCheckbox } =
-  useLocalization(stateToggle);
+const {
+  tabTitle,
+  headerMain,
+  headerLengthPassword,
+  labelCheckbox,
+  successfulCopy,
+} = useLocalization(stateToggle);
 const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
   useCheckboxes(labelCheckbox);
 const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);
@@ -54,6 +63,7 @@ watch(tabTitle, () => (document.title = tabTitle.value));
 #app {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 480px;
 }
 
