@@ -1,22 +1,14 @@
-# password-generator
+# Генератор паролей
 
-## Project setup
-```
-npm install
-```
+### Выбор сложности пароля
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- количество символов от 4 до 32
+- нижний регистр
+- верхний регистр
+- цифры
+- "простые" символы
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Выбор языка
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
+- rus
+- en
