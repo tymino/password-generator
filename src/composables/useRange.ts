@@ -1,6 +1,4 @@
-import { Ref, ref, watch, unref } from 'vue';
-import { ICurrentLang } from '@/types/ILocalization';
-import { ICheckboxes } from '@/types/ICheckboxes';
+import { Ref, ref, watch } from 'vue';
 
 export const useRange = (
   checkedCheckboxesCount: Ref<number>,

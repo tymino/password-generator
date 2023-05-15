@@ -20,7 +20,7 @@
 
 <script lang="ts">
 export default {
-  name: 'c-header',
+  name: 'ui-toggle',
 };
 </script>
 
@@ -29,7 +29,9 @@ import { defineProps, defineEmits } from 'vue';
 
 interface IProps {
   stateToggle: boolean;
-  namesToggle: any;
+  namesToggle: {
+    [key: string]: string;
+  };
 }
 
 interface IEmit {
