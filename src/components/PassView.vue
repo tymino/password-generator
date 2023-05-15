@@ -1,18 +1,20 @@
 <template>
   <div class="container">
-    <div class="password">{{ password }}</div>
+    <div class="password" v-if="isCopied">{{ successfulCopy }}</div>
+    <div class="password" v-else>{{ password }}</div>
 
     <div class="icons">
       <img
         class="icons__item icons__item-refresh"
         src="@/assets/icons/refresh.png"
-        alt="image refresh"
+        alt="icon refresh"
         @click="handleClickRefresh"
       />
       <img
         class="icons__item icons__item-copy"
+        :class="{ copied: isCopied || password.length === 0 }"
         src="@/assets/icons/copy.png"
-        alt="image copy"
+        alt="icon copy"
         @click="handleClickCopy"
       />
     </div>
@@ -20,10 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, ref, watch } from 'vue';
+
+const isCopied = ref(false);
 
 interface IProps {
   password: string;
+  successfulCopy: string;
 }
 
 interface IEmit {
@@ -34,15 +39,23 @@ const props = defineProps<IProps>();
 const emit = defineEmits<IEmit>();
 
 const handleClickRefresh = () => {
+  isCopied.value = false;
   emit('updatePassword');
 };
 
 const handleClickCopy = () => {
+  if (props.password.length === 0 || isCopied.value) return;
+
   navigator.clipboard
     .writeText(props.password)
-    .then(() => console.log('ok'))
+    .then(() => (isCopied.value = true))
     .catch(() => console.log('not navigator clipboard'));
 };
+
+watch(
+  () => props.password,
+  () => (isCopied.value = false)
+);
 </script>
 
 <style lang="scss" scoped>
@@ -61,15 +74,11 @@ const handleClickCopy = () => {
   width: 100%;
   border: none;
   border-bottom: 1px solid var(--color-border);
-  /* font-family: $font; */
   font-size: 1.3rem;
   color: var(--color-border);
   text-align: center;
   outline: none;
   background-color: var(--color-background-main);
-
-  /* &::selection
-      background: none */
 }
 
 .icons {

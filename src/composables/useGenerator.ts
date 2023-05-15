@@ -3,10 +3,9 @@ import { ICheckboxes } from '@/types/ICheckboxes';
 
 export const useGenerator = (
   rangeValue: Ref<number>,
-  checkboxes: Ref<ICheckboxes[]>,
-  initPassword = '-- --'
+  checkboxes: Ref<ICheckboxes[]>
 ) => {
-  const password = ref(initPassword);
+  const password = ref('');
 
   const updatePassword = () => {
     const chars = checkboxes.value.reduce((str, item) => {
@@ -14,7 +13,7 @@ export const useGenerator = (
     }, '');
 
     if (chars.length === 0) {
-      password.value = '-- --';
+      password.value = '';
       return;
     }
 
