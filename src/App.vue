@@ -54,6 +54,7 @@ watch(tabTitle, () => (document.title = tabTitle.value));
 #app {
   display: flex;
   flex-direction: column;
+  max-width: 480px;
 }
 
 main {
@@ -63,7 +64,7 @@ main {
 
 .options {
   display: flex;
-  width: 430px;
+  width: 100%;
   margin-bottom: 20px;
   padding: 18px 26px;
 
@@ -76,6 +77,21 @@ main {
 
   &__toggle {
     align-self: flex-end;
+  }
+}
+
+@media (max-width: 510px) {
+  #app {
+    width: 100%;
+  }
+
+  .options {
+    flex-direction: column;
+
+    &__checkbox-list {
+      margin-left: 0px;
+      margin-top: 30px;
+    }
   }
 }
 </style>

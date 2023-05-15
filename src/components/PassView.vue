@@ -53,7 +53,7 @@ const handleClickCopy = () => {
   padding: 18px 26px;
   border-radius: 5px;
 
-  width: 430px;
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -73,14 +73,16 @@ const handleClickCopy = () => {
 }
 
 .icons {
+  --icon-size-desktop: 32px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 12px;
 
   &__item {
-    width: 32px;
-    height: 32px;
+    width: var(--icon-size-desktop);
+    height: var(--icon-size-desktop);
     background-color: none;
 
     &:active:not(.copied) {
@@ -98,6 +100,34 @@ const handleClickCopy = () => {
 
     &.copied {
       opacity: 0.4;
+    }
+  }
+}
+
+@media (max-width: 510px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .password {
+    margin-bottom: 14px;
+    font-size: 1rem;
+    line-height: 2rem;
+    overflow: hidden;
+  }
+
+  .icons {
+    --icon-size-mobile: 42px;
+
+    margin-left: 0px;
+
+    &__item {
+      width: var(--icon-size-mobile);
+      height: var(--icon-size-mobile);
+
+      &-copy {
+        margin-left: 20px;
+      }
     }
   }
 }

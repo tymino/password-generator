@@ -12,7 +12,7 @@
         @input="handleRange"
       />
     </div>
-    <ProgressBar :value="progressValue" />
+    <ProgressBar class="progress-bar" :value="progressValue" />
   </div>
 </template>
 
@@ -49,14 +49,14 @@ const handleRange = (e: Event) => {
 }
 
 .title {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   font-size: 1.6rem;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .length-pass-value {
@@ -96,13 +96,21 @@ const handleRange = (e: Event) => {
 
     cursor: pointer;
   }
+}
 
-  // &::-moz-range-thumb {
-  //   width: 25px;
-  //   height: 25px;
-  //   border-radius: 5px;
-  //   background: var(--color-input);
-  //   cursor: pointer;
-  // }
+@media (max-width: 510px) {
+  .title {
+    order: 1;
+    text-align: center;
+  }
+
+  .wrapper {
+    order: 2;
+  }
+
+  .progress-bar {
+    order: 1;
+    margin-bottom: 14px;
+  }
 }
 </style>
