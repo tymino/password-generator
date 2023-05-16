@@ -28,6 +28,7 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
       isChecked: false,
       payload: '^! ;#%$&:?|"\'`\\/.,*{}()[]-_+=@<>~',
     },
+    { id: '4', name: 'il1Lo0O', isChecked: false, payload: 'il1Lo0O' },
   ]);
 
   const updateCheckboxes = (id: string) => {
@@ -54,7 +55,7 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
     checkboxes.value = checkboxes.value.map((item, index) => {
       return {
         ...item,
-        name: labelCheckbox.value[index],
+        name: labelCheckbox.value[index] || item.name,
       };
     });
   };

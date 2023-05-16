@@ -14,6 +14,7 @@ export const useRange = (
 
   const setProgressValue = () => {
     switch (checkedCheckboxesCount.value) {
+      case 5:
       case 4:
         progressValue.value = minmax(50, 100);
         break;
