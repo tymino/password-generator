@@ -1,4 +1,4 @@
-import { Ref, reactive, toRefs, unref, watch } from 'vue';
+import { Ref, computed, reactive, toRefs, unref, watch } from 'vue';
 
 import { ILocalization, ICurrentLang } from '@/types/ILocalization';
 import { ELanguage } from '@/types/ELanguage';
@@ -21,15 +21,18 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
     },
   };
 
-  const activeLang = reactive<ICurrentLang>({ ...langStore[ELanguage.ru] });
-
-  const setActiveLanguage = () => {
+  const selectedLang = computed(() => {
     const prop = unref(toggleState) ? 'en' : 'ru';
+    return { ...langStore[ELanguage[prop]] };
+  });
 
-    Object.assign(activeLang, { ...langStore[ELanguage[prop]] });
+  const currentLanguage = reactive<ICurrentLang>(selectedLang.value);
+
+  const setCurrentLanguage = () => {
+    Object.assign(currentLanguage, selectedLang.value);
   };
 
-  watch(toggleState, setActiveLanguage);
+  watch(toggleState, setCurrentLanguage);
 
-  return toRefs(activeLang);
+  return toRefs(currentLanguage);
 };
