@@ -28,11 +28,11 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
 
   const currentLanguage = reactive<ICurrentLang>(selectedLang.value);
 
-  const setCurrentLanguage = () => {
+  const updateCurrentLanguage = () => {
     Object.assign(currentLanguage, selectedLang.value);
   };
 
-  watch(toggleState, setCurrentLanguage);
+  watch(toggleState, updateCurrentLanguage);
 
   return toRefs(currentLanguage);
 };

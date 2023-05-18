@@ -12,8 +12,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-header h1 {
+<style lang="scss" scoped>
+h1 {
   display: flex;
   justify-content: center;
   margin: 30px 0;

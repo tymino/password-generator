@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <div class="password" v-if="isCopied">{{ successfulCopy }}</div>
-    <div class="password" v-else>{{ password }}</div>
+    <div class="password">{{ passwordText }}</div>
 
     <div class="icons">
       <img
@@ -22,9 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch } from 'vue';
-
-const isCopied = ref(false);
+import { defineProps, defineEmits, ref, watch, computed } from 'vue';
 
 interface IProps {
   password: string;
@@ -37,6 +34,12 @@ interface IEmit {
 
 const props = defineProps<IProps>();
 const emit = defineEmits<IEmit>();
+
+const isCopied = ref(false);
+
+const passwordText = computed(() =>
+  isCopied.value ? props.successfulCopy : props.password
+);
 
 const handleClickRefresh = () => {
   isCopied.value = false;

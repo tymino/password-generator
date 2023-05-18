@@ -51,7 +51,7 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
     checkedCheckboxesCount.value = countChecked;
   };
 
-  const updateLanguageName = () => {
+  const updateNames = () => {
     checkboxes.value = checkboxes.value.map((item, index) => {
       return {
         ...item,
@@ -60,7 +60,7 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
     });
   };
 
-  watch(labelCheckbox, updateLanguageName);
+  watch(labelCheckbox, updateNames);
 
   return {
     checkboxes,

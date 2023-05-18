@@ -12,7 +12,7 @@ export const useGenerator = (
       return item.isChecked ? str + item.payload : str;
     }, '');
 
-    if (chars.length === 0) {
+    if (!chars.length) {
       password.value = '';
       return;
     }

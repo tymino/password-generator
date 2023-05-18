@@ -2,10 +2,10 @@ import { Ref, ref, watch } from 'vue';
 
 export const useRange = (
   checkedCheckboxesCount: Ref<number>,
-  defaulValue = 12
+  defaulRangeValue = 12
 ) => {
   const DEFAULT_PROGRESS_VALUE = 5;
-  const rangeValue = ref(defaulValue);
+  const rangeValue = ref(defaulRangeValue);
   const progressValue = ref(DEFAULT_PROGRESS_VALUE);
 
   const minmax = (min: number, max: number) => {
@@ -31,8 +31,7 @@ export const useRange = (
     }
   };
 
-  watch(checkedCheckboxesCount, setProgressValue);
-  watch(rangeValue, setProgressValue);
+  watch([checkedCheckboxesCount, rangeValue], setProgressValue);
 
   return {
     rangeValue,
