@@ -12,4 +12,5 @@
 
 - rus
 - en
-- test
+
+* сохраняется в localStorage
