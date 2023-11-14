@@ -17,26 +17,26 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-import ProgressBar from '@/components/UI/ProgressBar.vue';
+import { defineProps, defineEmits } from 'vue'
+import ProgressBar from '@/components/UI/ProgressBar.vue'
 
 interface IProps {
-  rangeValue: number;
-  progressValue: number;
-  title: string;
+  rangeValue: number
+  progressValue: number
+  title: string
 }
 
 interface IEmit {
-  (e: 'update:rangeValue', value: number): void;
+  (e: 'update:rangeValue', value: number): void
 }
 
-defineProps<IProps>();
-const emit = defineEmits<IEmit>();
+defineProps<IProps>()
+const emit = defineEmits<IEmit>()
 
 const handleRange = (e: Event) => {
-  const value = Number((e.target as HTMLInputElement).value);
-  emit('update:rangeValue', value);
-};
+  const value = Number((e.target as HTMLInputElement).value)
+  emit('update:rangeValue', value)
+}
 </script>
 
 <style lang="scss" scoped>

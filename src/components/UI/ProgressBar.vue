@@ -1,24 +1,19 @@
 <template>
-  <progress
-    class="progress"
-    :class="getColorClass"
-    :value="value"
-    max="100"
-  ></progress>
+  <progress class="progress" :class="getColorClass" :value="value" max="100"></progress>
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue';
+import { defineProps, computed } from 'vue'
 
 interface IProps {
-  value: number;
+  value: number
 }
 
-const props = defineProps<IProps>();
+const props = defineProps<IProps>()
 
 const getColorClass = computed(() => {
-  return props.value >= 70 ? 'hard' : props.value >= 45 ? 'medium' : 'easy';
-});
+  return props.value >= 70 ? 'hard' : props.value >= 45 ? 'medium' : 'easy'
+})
 </script>
 
 <style lang="scss" scoped>

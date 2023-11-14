@@ -16,29 +16,29 @@
 <script lang="ts">
 export default {
   name: 'ui-checkbox',
-};
+}
 </script>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from 'vue';
+import { defineEmits, defineProps } from 'vue'
 
 interface IProps {
-  id: string;
-  name: string;
-  checked: boolean;
+  id: string
+  name: string
+  checked: boolean
 }
 
 interface IEmit {
-  (e: 'update:checked', id: string): void;
+  (e: 'update:checked', id: string): void
 }
 
-defineProps<IProps>();
-const emit = defineEmits<IEmit>();
+defineProps<IProps>()
+const emit = defineEmits<IEmit>()
 
 const handleChecked = (event: Event) => {
-  const id = (event.target as HTMLInputElement).value;
-  emit('update:checked', id);
-};
+  const id = (event.target as HTMLInputElement).value
+  emit('update:checked', id)
+}
 </script>
 
 <style lang="scss" scoped>

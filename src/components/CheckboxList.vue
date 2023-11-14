@@ -12,23 +12,23 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from 'vue';
+import { defineEmits, defineProps } from 'vue'
 
-import Checkbox from '@/components/UI/Checkbox.vue';
-import { ICheckboxes } from '@/types/ICheckboxes';
+import Checkbox from '@/components/UI/Checkbox.vue'
+import { ICheckboxes } from '@/types/ICheckboxes'
 
 interface IProps {
-  checkboxes: ICheckboxes[];
+  checkboxes: ICheckboxes[]
 }
 
 interface IEmit {
-  (e: 'updateCheckboxes', id: string): void;
+  (e: 'updateCheckboxes', id: string): void
 }
 
-defineProps<IProps>();
-const emit = defineEmits<IEmit>();
+defineProps<IProps>()
+const emit = defineEmits<IEmit>()
 
 const emitId = (id: string) => {
-  emit('updateCheckboxes', id);
-};
+  emit('updateCheckboxes', id)
+}
 </script>

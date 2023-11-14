@@ -9,7 +9,7 @@
 <script lang="ts">
 export default {
   name: 'c-header',
-};
+}
 </script>
 
 <style lang="scss" scoped>

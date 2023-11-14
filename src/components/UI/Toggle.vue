@@ -21,29 +21,29 @@
 <script lang="ts">
 export default {
   name: 'ui-toggle',
-};
+}
 </script>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits } from 'vue'
 
 interface IProps {
-  stateToggle: boolean;
+  stateToggle: boolean
   namesToggle: {
-    [key: string]: string;
-  };
+    [key: string]: string
+  }
 }
 
 interface IEmit {
-  (e: 'update:stateToggle', isChecked: boolean): void;
+  (e: 'update:stateToggle', isChecked: boolean): void
 }
 
-defineProps<IProps>();
-const emit = defineEmits<IEmit>();
+defineProps<IProps>()
+const emit = defineEmits<IEmit>()
 
 const handleToggle = (e: Event) => {
-  emit('update:stateToggle', (e.target as HTMLInputElement).checked);
-};
+  emit('update:stateToggle', (e.target as HTMLInputElement).checked)
+}
 </script>
 
 <style lang="scss" scoped>

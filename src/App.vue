@@ -21,42 +21,34 @@
     </div>
   </main>
 
-  <Toggle
-    class="options__toggle"
-    v-model:stateToggle="stateToggle"
-    :namesToggle="namesToggle"
-  />
+  <Toggle class="options__toggle" v-model:stateToggle="stateToggle" :namesToggle="namesToggle" />
 </template>
 
 <script lang="ts" setup>
-import { watch } from 'vue';
+import { onMounted, watch } from 'vue'
 
-import Header from '@/components/Header.vue';
-import CheckboxList from '@/components/CheckboxList.vue';
-import PassView from '@/components/PassView.vue';
-import RangePass from '@/components/RangePass.vue';
-import Toggle from '@/components/UI/Toggle.vue';
+import Header from '@/components/Header.vue'
+import CheckboxList from '@/components/CheckboxList.vue'
+import PassView from '@/components/PassView.vue'
+import RangePass from '@/components/RangePass.vue'
+import Toggle from '@/components/UI/Toggle.vue'
 
-import { useCheckboxes } from '@/composables/useCheckboxes';
-import { useGenerator } from '@/composables/useGenerator';
-import { useLocalization } from '@/composables/useLocalization';
-import { useRange } from '@/composables/useRange';
-import { useToggle } from '@/composables/useToggle';
+import { useCheckboxes } from '@/composables/useCheckboxes'
+import { useGenerator } from '@/composables/useGenerator'
+import { useLocalization } from '@/composables/useLocalization'
+import { useRange } from '@/composables/useRange'
+import { useToggle } from '@/composables/useToggle'
 
-const { stateToggle, namesToggle } = useToggle();
-const {
-  tabTitle,
-  headerMain,
-  headerLengthPassword,
-  labelCheckbox,
-  successfulCopy,
-} = useLocalization(stateToggle);
-const { checkboxes, checkedCheckboxesCount, updateCheckboxes } =
-  useCheckboxes(labelCheckbox);
-const { rangeValue, progressValue } = useRange(checkedCheckboxesCount);
-const { password, updatePassword } = useGenerator(rangeValue, checkboxes);
+const { stateToggle, namesToggle } = useToggle()
+const { tabTitle, headerMain, headerLengthPassword, labelCheckbox, successfulCopy } =
+  useLocalization(stateToggle)
+const { checkboxes, checkedCheckboxesCount, updateCheckboxes } = useCheckboxes(labelCheckbox)
+const { rangeValue, progressValue } = useRange(checkedCheckboxesCount)
+const { password, updatePassword } = useGenerator(rangeValue, checkboxes)
 
-watch(tabTitle, () => (document.title = tabTitle.value));
+watch(tabTitle, () => (document.title = tabTitle.value))
+
+onMounted(updatePassword)
 </script>
 
 <style lang="scss">

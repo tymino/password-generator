@@ -21,44 +21,42 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch, computed } from 'vue';
+import { defineProps, defineEmits, ref, watch, computed } from 'vue'
 
 interface IProps {
-  password: string;
-  successfulCopy: string;
+  password: string
+  successfulCopy: string
 }
 
 interface IEmit {
-  (e: 'updatePassword'): void;
+  (e: 'updatePassword'): void
 }
 
-const props = defineProps<IProps>();
-const emit = defineEmits<IEmit>();
+const props = defineProps<IProps>()
+const emit = defineEmits<IEmit>()
 
-const isCopied = ref(false);
+const isCopied = ref(false)
 
-const passwordText = computed(() =>
-  isCopied.value ? props.successfulCopy : props.password
-);
+const passwordText = computed(() => (isCopied.value ? props.successfulCopy : props.password))
 
 const handleClickRefresh = () => {
-  isCopied.value = false;
-  emit('updatePassword');
-};
+  isCopied.value = false
+  emit('updatePassword')
+}
 
 const handleClickCopy = () => {
-  if (props.password.length === 0 || isCopied.value) return;
+  if (props.password.length === 0 || isCopied.value) return
 
   navigator.clipboard
     .writeText(props.password)
     .then(() => (isCopied.value = true))
-    .catch(() => console.log('not navigator clipboard'));
-};
+    .catch(() => console.log('not navigator clipboard'))
+}
 
 watch(
   () => props.password,
   () => (isCopied.value = false)
-);
+)
 </script>
 
 <style lang="scss" scoped>
