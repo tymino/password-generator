@@ -13,4 +13,4 @@
 - rus
 - en
 
-* сохраняется в localStorage
+##### \*_cохраняется в localStorage_
