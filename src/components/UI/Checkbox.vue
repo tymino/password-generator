@@ -20,8 +20,6 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from 'vue'
-
 interface IProps {
   id: string
   name: string

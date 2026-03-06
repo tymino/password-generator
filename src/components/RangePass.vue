@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
 import ProgressBar from '@/components/UI/ProgressBar.vue'
 
 interface IProps {

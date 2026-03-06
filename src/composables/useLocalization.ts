@@ -1,7 +1,8 @@
-import { Ref, computed, reactive, toRefs, unref, watch } from 'vue'
-
-import { ILocalization, ICurrentLang } from '@/types/ILocalization'
+import { computed, reactive, toRefs, unref, watch } from 'vue'
 import { ELanguage } from '@/types/ELanguage'
+
+import type { Ref } from 'vue'
+import type { ILocalization, ICurrentLang } from '@/types/ILocalization'
 
 export const useLocalization = (toggleState: Ref<boolean>) => {
   const langStore: ILocalization = {
@@ -9,14 +10,14 @@ export const useLocalization = (toggleState: Ref<boolean>) => {
       tabTitle: 'Генератор паролей',
       headerMain: 'Создайте пароль',
       headerLengthPassword: 'Длина пароля',
-      labelCheckbox: ['Нижний регистр', 'Верхний регистр', 'Цифры', 'Символы'],
+      checkboxName: ['Нижний регистр', 'Верхний регистр', 'Цифры', 'Символы'],
       successfulCopy: 'Пароль скопирован',
     },
     en: {
       tabTitle: 'Password generator',
       headerMain: 'Create password',
       headerLengthPassword: 'Password length',
-      labelCheckbox: ['Lower case', 'Upper case', 'Numbers', 'Symbols'],
+      checkboxName: ['Lower case', 'Upper case', 'Numbers', 'Symbols'],
       successfulCopy: 'Password copied',
     },
   }

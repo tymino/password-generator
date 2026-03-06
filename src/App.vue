@@ -40,15 +40,18 @@ import { useRange } from '@/composables/useRange'
 import { useToggle } from '@/composables/useToggle'
 
 const { stateToggle, namesToggle } = useToggle()
-const { tabTitle, headerMain, headerLengthPassword, labelCheckbox, successfulCopy } =
+const { tabTitle, headerMain, headerLengthPassword, checkboxName, successfulCopy } =
   useLocalization(stateToggle)
-const { checkboxes, checkedCheckboxesCount, updateCheckboxes } = useCheckboxes(labelCheckbox)
+const { checkboxes, checkedCheckboxesCount, updateCheckboxes } = useCheckboxes(checkboxName)
 const { rangeValue, progressValue } = useRange(checkedCheckboxesCount)
 const { password, updatePassword } = useGenerator(rangeValue, checkboxes)
 
 watch(tabTitle, () => (document.title = tabTitle.value))
 
-onMounted(updatePassword)
+onMounted(() => {
+  updatePassword()
+  document.title = tabTitle.value
+})
 </script>
 
 <style lang="scss">

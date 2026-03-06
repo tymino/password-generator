@@ -25,8 +25,6 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
 interface IProps {
   stateToggle: boolean
   namesToggle: {

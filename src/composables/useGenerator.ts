@@ -1,5 +1,7 @@
-import { ref, Ref, watch } from 'vue'
-import { ICheckboxes } from '@/types/ICheckboxes'
+import { ref, watch } from 'vue'
+
+import type { Ref } from 'vue'
+import type { ICheckboxes } from '@/types/ICheckboxes'
 
 export const useGenerator = (rangeValue: Ref<number>, checkboxes: Ref<ICheckboxes[]>) => {
   const password = ref('')

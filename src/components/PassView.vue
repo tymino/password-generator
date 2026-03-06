@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, watch, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 interface IProps {
   password: string
@@ -55,7 +55,7 @@ const handleClickCopy = () => {
 
 watch(
   () => props.password,
-  () => (isCopied.value = false)
+  () => (isCopied.value = false),
 )
 </script>
 

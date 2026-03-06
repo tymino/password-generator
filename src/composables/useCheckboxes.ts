@@ -1,31 +1,34 @@
-import { Ref, ref, watch } from 'vue'
-import { ICheckboxes } from '@/types/ICheckboxes'
+import { ref, watch } from 'vue'
 
-export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
-  const checkedCheckboxesCount = ref(0)
+import type { Ref } from 'vue'
+import type { ICheckboxes } from '@/types/ICheckboxes'
+import type { TCheckboxesName } from '@/types/ILocalization'
+
+export const useCheckboxes = (checkboxName: Ref<TCheckboxesName>) => {
+  const checkedCheckboxesCount = ref(4)
   const checkboxes = ref<ICheckboxes[]>([
     {
       id: '0',
-      name: labelCheckbox.value[0],
-      isChecked: false,
+      name: checkboxName.value[0],
+      isChecked: true,
       payload: 'abcdefghjkmnpqrstuvwxyz',
     },
     {
       id: '1',
-      name: labelCheckbox.value[1],
-      isChecked: false,
+      name: checkboxName.value[1],
+      isChecked: true,
       payload: 'ABCDEFGHIJKMNPQRSTUVWXYZ',
     },
     {
       id: '2',
-      name: labelCheckbox.value[2],
+      name: checkboxName.value[2],
       isChecked: true,
       payload: '23456789',
     },
     {
       id: '3',
-      name: labelCheckbox.value[3],
-      isChecked: false,
+      name: checkboxName.value[3],
+      isChecked: true,
       payload: '^! ;#%$&:?|"\'`\\/.,*{}()[]-_+=@<>~',
     },
     { id: '4', name: 'il1Lo0O', isChecked: false, payload: 'il1Lo0O' },
@@ -52,12 +55,12 @@ export const useCheckboxes = (labelCheckbox: Ref<string[]>) => {
     checkboxes.value = checkboxes.value.map((item, index) => {
       return {
         ...item,
-        name: labelCheckbox.value[index] || item.name,
+        name: checkboxName.value[index] || item.name,
       }
     })
   }
 
-  watch(labelCheckbox, updateNames)
+  watch(checkboxName, updateNames)
 
   return {
     checkboxes,
